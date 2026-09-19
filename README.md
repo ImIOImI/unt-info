@@ -23,7 +23,7 @@ npm run build    # static output in dist/
 | What | Where |
 |---|---|
 | **Event facts and our plan — the file you edit** | `src/content/event.ts` |
-| Who plays Swordland | `src/content/legions.ts` |
+| The order of battle — who is in which zone | `src/content/legions.ts` |
 | Translated sentences | `src/i18n/locales/<lang>.json` |
 | Player portraits | `src/avatars/<avatar>.png` |
 | Page bodies | `src/components/page/` |
@@ -38,8 +38,23 @@ like a real answer.
 
 The file is split in two on purpose. Everything above the "UNITY's plan"
 divider is how the *game* works and is true for every alliance. Everything
-below it is how *we* play it — squads, the opening sequence, the target cycle.
-That is the half to change when the strategy changes.
+below it — the four zones, the standing orders, the flex duties — is how *we*
+play it. That is the half to change when the strategy changes, and the page
+keeps the two apart so a reader can tell which is which.
+
+## Changing the roster
+
+`src/content/legions.ts` is the team sheet: four zones, each with a lead, the
+players holding a named building, and the flex group. Names are written
+exactly as the game prints them, checked against
+`/alliances/976/UNT?include=roster` rather than typed from the order — a name
+a player cannot copy into chat is no use to them.
+
+Headcounts are never written down. The page counts the roster, so moving
+someone between zones updates every number that mentions them.
+
+Drop a portrait at `src/avatars/<avatar>.png` to replace a lettered tile. No
+code change, and a missing file is not an error.
 
 ## Languages
 

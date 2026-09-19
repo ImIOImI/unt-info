@@ -1,0 +1,194 @@
+---
+/**
+ * The order of battle: four colour zones, and who is in each.
+ *
+ * The card is ordered the way a player reads it under pressure — their zone
+ * lead first, then the people holding a named building, then the flex group
+ * they are probably in. Everyone with an objective carries the building's
+ * name next to them, because "lock down the Purple Abbey" is the whole
+ * instruction and it should never be a click away.
+ *
+ * Names appear EXACTLY as the game prints them, special characters and all.
+ * Uppercasing or transliterating them would break the one job this section
+ * has, which is letting a player match a face to a name in chat.
+ *
+ * Colour here is information, not decoration: it is the zone colour on the
+ * map. It is never the only carrier — every zone is also named in words and
+ * every role is labelled — so it still reads in greyscale.
+ */
+import { Image } from 'astro:assets';
+import { EVENT } from '../content/event';
+import { LEGIONS, initial, zoneRoll, type Player } from '../content/legions';
+import { useTranslations, type Lang } from '../i18n/ui';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const num = new Intl.NumberFormat(lang);
+const SL = EVENT.swordland;
+const legion = LEGIONS[0];
+
+const faces = import.meta.glob<{ default: ImageMetadata }>(
+  '/src/avatars/*.{png,jpg,jpeg,webp}',
+  { eager: true },
+);
+const faceFor = (stem: string) =>
+  Object.entries(faces).find(([p]) => new RegExp(`/${stem}\\.[a-z]+$`, 'i').test(p))?.[1].default;
+
+const phaseTwoAt = SL.phases.find((p) => p.key === 'two')?.at;
+
+/**
+ * "Purple Abbey", "West Sanctum", "Bell Tower". The qualifier and the
+ * building are two separate strings joined by a format string, so a
+ * translator decides the word order rather than English deciding it.
+ */
+function objective(p: Player): string | null {
+  if (!p.holds) return null;
+  const bld = t(`bld.${p.holds}`);
+  return p.qual ? t('obj.qualified', { qual: t(`qual.${p.qual}`), bld }) : bld;
+}
+
+/** A holder whose building is not on the board yet is waiting, not idle. */
+function waitsFor(p: Player): number | null {
+  const b = SL.buildings.find((x) => x.key === p.holds);
+  return b && b.opensAtPhase === 2 && typeof phaseTwoAt === 'number' ? phaseTwoAt : null;
+}
+---
+<div class="zones">
+  {SL.plan.zones.map((key) => {
+    const zone = legion.zones[key];
+    if (!zone) return null;
+    const commands = [zone.lead, ...zone.holders];
+    return (
+      <section class="zone" data-zone={key} aria-label={t('zone.name', { zone: t(`zone.${key}.name`) })}>
+        <header class="zone__hd">
+          <h3 class="zone__name">{t('zone.name', { zone: t(`zone.${key}.name`) })}</h3>
+          <p class="zone__n">{num.format(zoneRoll(zone).length)}</p>
+        </header>
+
+        <ol class="holds">
+          {commands.map((p, i) => {
+            const face = faceFor(p.avatar);
+            const late = waitsFor(p);
+            return (
+              <li class="hold" data-lead={i === 0 ? '1' : undefined}>
+                {face
+                  ? <Image class="hold__img" src={face} alt="" widths={[64, 128]} sizes="56px" loading="lazy" />
+                  : <span class="hold__img hold__img--blank" aria-hidden="true">{initial(p.name)}</span>}
+                <div class="hold__txt">
+                  <p class="hold__role">{i === 0 ? t('zone.lead') : t('zone.holds')}</p>
+                  <p class="hold__name">{p.name}</p>
+                  <p class="hold__obj">
+                    {objective(p)}
+                    {late !== null && <>{' '}<span class="hold__late">{t('bt.opensat', { n: late })}</span></>}
+                  </p>
+                </div>
+              </li>
+            );
+          })}
+        </ol>
+
+        <div class="zone__flex">
+          <p class="zone__flexhd">{t('zone.flex', { n: num.format(zone.flex.length) })}</p>
+          <ul class="faces">
+            {zone.flex.map((p) => {
+              const face = faceFor(p.avatar);
+              return (
+                <li class="face">
+                  {face
+                    ? <Image class="face__img" src={face} alt="" widths={[80, 160]} sizes="72px" loading="lazy" />
+                    : <span class="face__img face__img--blank" aria-hidden="true">{initial(p.name)}</span>}
+                  <span class="face__name">{p.name}</span>
+                </li>
+              );
+            })}
+          </ul>
+          <p class="zone__note">{t(`zone.${key}.flex`)}</p>
+        </div>
+      </section>
+    );
+  })}
+</div>
+
+<style>
+  /* The zone colours are the map's, not the site's. Every one of them
+     clears 4.5:1 on the iron band it sits on. */
+  .zone[data-zone='purple'] { --zc: #C08CF0; }
+  .zone[data-zone='blue']   { --zc: #6FB6F0; }
+  .zone[data-zone='green']  { --zc: #6FD18A; }
+  .zone[data-zone='yellow'] { --zc: #E8C25C; }
+
+  .zones { display: grid; gap: 2.5rem; }
+  @media (min-width: 58rem) {
+    .zones { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 3rem 2.5rem; }
+  }
+
+  .zone { border-top: 4px solid var(--zc); padding-top: 1rem; }
+
+  .zone__hd {
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: 1rem; margin-bottom: 1.25rem;
+  }
+  .zone__name {
+    font-size: 1.5rem; font-variation-settings: 'wdth' 84; color: var(--zc);
+  }
+  .zone__n {
+    margin: 0; font-family: var(--display); font-weight: 900; font-size: 1.5rem;
+    color: rgb(237 241 245 / 0.35); font-variant-numeric: tabular-nums;
+  }
+
+  .holds { list-style: none; margin: 0 0 1.5rem; padding: 0; display: grid; gap: 0.75rem; }
+  .hold {
+    display: grid; grid-template-columns: auto 1fr; gap: 0.85rem; align-items: center;
+    padding: 0.6rem 0.75rem;
+    background: rgb(237 241 245 / 0.05);
+    border-inline-start: 3px solid rgb(237 241 245 / 0.18);
+  }
+  .hold[data-lead='1'] { border-inline-start-color: var(--zc); background: rgb(237 241 245 / 0.09); }
+
+  .hold__img {
+    width: 3.5rem; height: 3.5rem; object-fit: cover;
+    border: 1px solid rgb(237 241 245 / 0.22);
+    background: rgb(237 241 245 / 0.06);
+  }
+  .hold__img--blank {
+    display: grid; place-items: center;
+    font-family: var(--display); font-weight: 900; font-size: 1.4rem;
+  }
+  .hold__txt { min-width: 0; }
+  .hold__txt p { margin: 0; }
+  .hold__role {
+    font-family: var(--display); font-weight: 700; font-size: 0.625rem;
+    text-transform: uppercase; letter-spacing: 0.14em;
+    color: rgb(237 241 245 / 0.55);
+  }
+  .hold[data-lead='1'] .hold__role { color: var(--zc); }
+  .hold__name {
+    font-family: var(--display); font-weight: 900; font-size: 1rem;
+    line-height: 1.15; overflow-wrap: anywhere;
+  }
+  .hold__obj { font-size: 0.8125rem; color: rgb(237 241 245 / 0.78); line-height: 1.35; }
+  .hold__late {
+    font-family: var(--display); font-weight: 700; font-size: 0.6875rem;
+    text-transform: uppercase; letter-spacing: 0.06em;
+    color: rgb(237 241 245 / 0.5);
+    white-space: nowrap;
+  }
+
+  .zone__flexhd {
+    font-family: var(--display); font-weight: 700; font-size: 0.6875rem;
+    text-transform: uppercase; letter-spacing: 0.14em;
+    color: rgb(237 241 245 / 0.55);
+    margin: 0 0 0.9rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgb(237 241 245 / 0.18);
+  }
+
+  .zone__note {
+    margin: 0; font-size: 0.8125rem; line-height: 1.5;
+    color: rgb(237 241 245 / 0.7);
+    border-inline-start: 2px solid var(--zc);
+    padding-inline-start: 0.8rem;
+  }
+</style>

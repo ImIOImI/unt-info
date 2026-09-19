@@ -159,21 +159,49 @@ export const EVENT = {
     /**
      * ─── UNITY's plan ──────────────────────────────────────────────────
      *
-     * Deliberately empty. Everything above this line is how the GAME works
-     * and is true for every alliance on the map; everything that belongs
-     * below it is how WE play it — the squads, the opening, the mid-match
-     * loop, the endgame — and that is not written down yet.
+     * Everything from here down is how WE play the match, not how the game
+     * works. This is the part that is ours; the rest above is public fact
+     * and is the same for whoever we are drawn against.
      *
-     * Nothing is copied in from another alliance's site as a placeholder,
-     * because a plausible-looking plan nobody agreed to is worse on this
-     * page than an honest gap. The page renders a "plan coming" panel where
-     * these sections go.
-     *
-     * When it lands, it comes back as data here and sections in
-     * src/components/page/Swordland.astro — src/components/Squads.astro and
-     * src/content/legions.ts are already waiting for the roster half.
+     * Who is in each zone lives in src/content/legions.ts — this is the
+     * shape, that is the roster.
      * ───────────────────────────────────────────────────────────────────
      */
+    plan: {
+      /**
+       * The map is cut into four colour zones and every starter belongs to
+       * exactly one. Order here is the order the operation order lists them
+       * and the order the page shows them.
+       *
+       * Each key needs zone.<key>.name and zone.<key>.flex in the locales,
+       * a colour in the .zone rules in src/styles/global.css, and a
+       * matching entry in LEGIONS[].zones.
+       */
+      zones: ['purple', 'blue', 'green', 'yellow'],
+
+      /**
+       * Buildings no zone owns. Leadership calls the rotation onto these as
+       * the match develops, which is exactly why they are not on anybody's
+       * card — a zone that walks off its own objective to chase the centre
+       * has cost more than the centre is worth.
+       */
+      sharedObjectives: ['swordshrine'],
+
+      /**
+       * Standing orders, in the priority they resolve. When two of them
+       * pull in different directions the earlier one wins, which is the
+       * whole point of writing them in an order. Each key has
+       * order.<key>.title / .body.
+       */
+      orders: ['objectives', 'secondary', 'nofreelance', 'shrine'],
+
+      /**
+       * What a flex player does, in the same priority order. Identical in
+       * all four zones, so it is stated once here rather than four times.
+       * Each key has flex.<key>.
+       */
+      flexDuties: ['rally', 'reinforce', 'gather', 'loot'],
+    },
   },
 
 } as const;

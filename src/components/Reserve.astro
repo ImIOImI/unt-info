@@ -1,0 +1,42 @@
+---
+/**
+ * The ready reserve. Ten names, no zone — a substitute can be called into
+ * any of the four, which is exactly why they are shown as one block rather
+ * than parcelled out under a zone they might not end up in.
+ *
+ * Portrait tiles come from global.css, shared with the zone cards.
+ */
+import { Image } from 'astro:assets';
+import { LEGIONS, initial } from '../content/legions';
+import { type Lang } from '../i18n/ui';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+void lang;
+
+const subs = LEGIONS[0].subs;
+
+const faces = import.meta.glob<{ default: ImageMetadata }>(
+  '/src/avatars/*.{png,jpg,jpeg,webp}',
+  { eager: true },
+);
+const faceFor = (stem: string) =>
+  Object.entries(faces).find(([p]) => new RegExp(`/${stem}\\.[a-z]+$`, 'i').test(p))?.[1].default;
+---
+<ul class="faces faces--reserve">
+  {subs.map((p) => {
+    const face = faceFor(p.avatar);
+    return (
+      <li class="face">
+        {face
+          ? <Image class="face__img" src={face} alt="" widths={[80, 160]} sizes="72px" loading="lazy" />
+          : <span class="face__img face__img--blank" aria-hidden="true">{initial(p.name)}</span>}
+        <span class="face__name">{p.name}</span>
+      </li>
+    );
+  })}
+</ul>
+
+<style>
+  .faces--reserve { margin-bottom: 0; }
+</style>

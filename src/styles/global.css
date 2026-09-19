@@ -1,8 +1,12 @@
-/* ── LAH · snow-field palette ─────────────────────────────────────────────
-   The Bear Hunt happens on snow, so the page is a cold field rather than the
+/* ── UNT · snow-field palette ─────────────────────────────────────────────
+   Swordland is fought on snow, so the page is a cold field rather than the
    dark-mode-plus-neon every alliance site defaults to. Ember is the only hot
    colour, and it always means the same thing: an action, a number that
    matters, or a consequence.
+
+   The four zone colours are the exception, and deliberately not from this
+   palette: they are the colours on the map. The page owes a player that
+   match more than it owes itself a tidy swatch.
    ------------------------------------------------------------------------ */
 :root {
   --snow:  #EDF1F5;
@@ -12,7 +16,7 @@
   --pelt:  #5A4033;
   --ember-lift: #FF7A55;  /* ember, lightened to clear 4.5:1 on iron */
   --brass-lift: #D8A75B;  /* jumpers, on iron */
-  --steel-lift: #9DB2C6;  /* garrison, on iron */
+  --steel-lift: #9DB2C6;  /* quiet accent, on iron */
 
   --ink:      var(--iron);
   --ink-soft: #4A5866;
@@ -732,6 +736,55 @@ img { max-width: 100%; height: auto; display: block; }
   .split { grid-template-columns: minmax(0, 1fr) minmax(0, 20rem); gap: 3.5rem; align-items: start; }
   /* The marked-up board needs more room than a plain screenshot. */
   .sub { grid-template-columns: minmax(0, 1fr) minmax(0, 26rem); }
+}
+
+/* Portrait tiles. Shared by the zone cards and the ready reserve, which
+   is why they are here rather than scoped to either one. */
+.faces {
+  list-style: none; margin: 0 0 1rem; padding: 0;
+  display: grid; gap: 0.9rem 0.6rem;
+  grid-template-columns: repeat(auto-fill, minmax(4rem, 1fr));
+}
+.face { display: flex; flex-direction: column; align-items: center;
+  text-align: center; gap: 0.4rem; }
+.face__img {
+  width: 100%; max-width: 4rem; aspect-ratio: 1; object-fit: cover;
+  border: 1px solid rgb(237 241 245 / 0.22);
+  background: rgb(237 241 245 / 0.06);
+}
+.face__img--blank {
+  display: grid; place-items: center;
+  font-family: var(--display); font-weight: 900; font-size: 1.6rem;
+}
+.face__name {
+  font-family: var(--display); font-weight: 700;
+  font-size: 0.6875rem; letter-spacing: 0.02em; line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+
+
+
+/* Chain of command. Four rows, nothing else — a player who has lost the
+   thread should be able to read it in one glance and go ask someone. */
+.chain { list-style: none; margin: 0 0 1.5rem; padding: 0; display: grid; gap: 0.5rem; }
+.chain__row {
+  display: grid; grid-template-columns: minmax(6rem, 10rem) 1fr;
+  gap: 0.75rem 1rem; align-items: baseline;
+  padding: 0.7rem 0.9rem;
+  background: rgb(237 241 245 / 0.05);
+  border-inline-start: 3px solid var(--zc, var(--ember-lift));
+}
+.chain__row[data-zone='purple'] { --zc: #C08CF0; }
+.chain__row[data-zone='blue']   { --zc: #6FB6F0; }
+.chain__row[data-zone='green']  { --zc: #6FD18A; }
+.chain__row[data-zone='yellow'] { --zc: #E8C25C; }
+.chain__zone {
+  font-family: var(--display); font-weight: 700; font-size: 0.75rem;
+  text-transform: uppercase; letter-spacing: 0.12em; color: var(--zc);
+}
+.chain__lead {
+  font-family: var(--display); font-weight: 900; font-size: 1.0625rem;
+  overflow-wrap: anywhere;
 }
 
 @media (prefers-reduced-motion: reduce) {

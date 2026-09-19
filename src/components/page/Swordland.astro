@@ -1,19 +1,26 @@
 ---
 /**
- * Swordland Showdown — the half of the page that is public fact.
+ * Swordland Showdown.
  *
- * Every section here describes how the GAME works: the roster shape, the
- * opening lock, what unlocks when, and what each building pays. None of it
- * is UNITY's plan, which is not written down yet and so renders as a single
- * honest panel rather than as somebody else's strategy in our voice.
+ * Ordered the way a player needs it, not the way a guide would explain it:
+ * their zone and their job first, the standing orders next, and the game's
+ * own rules last as reference they can come back to. Someone who opens this
+ * ten minutes before the whistle should find their name without scrolling
+ * past a payout table.
  *
- * When the plan arrives, its sections go where the last band is now.
+ * Two halves, and the page keeps them apart on purpose. The zones and the
+ * orders are UNITY's plan, and change when leadership changes it. The
+ * phases, the payouts and the first-capture rule are how the game works,
+ * and are just as true for whoever we are drawn against.
  */
 import { EVENT, isTodo } from '../../content/event';
+import { LEGIONS, starters } from '../../content/legions';
 import { useTranslations, type Lang } from '../../i18n/ui';
 import Todo from '../Todo.astro';
 import Countdown from '../Countdown.astro';
 import BuildingTable from '../BuildingTable.astro';
+import Zones from '../Zones.astro';
+import Reserve from '../Reserve.astro';
 
 interface Props { lang: Lang }
 const { lang } = Astro.props;
@@ -21,6 +28,13 @@ const t = useTranslations(lang);
 
 const num = new Intl.NumberFormat(lang);
 const SL = EVENT.swordland;
+const legion = LEGIONS[0];
+
+// Counted from the roster rather than written down, so the headline number
+// can never disagree with the names underneath it.
+const onField = num.format(starters(legion));
+const reserve = num.format(legion.subs.length);
+const zoneCount = num.format(SL.plan.zones.length);
 
 const mains = num.format(SL.legion.mains);
 const subs = num.format(SL.legion.subs);
@@ -44,17 +58,107 @@ const bothSanctums = num.format(sanctum.alliance.perMin * sanctum.count);
 const shrineRate = num.format(shrine.alliance.perMin);
 const shrineFirst = num.format(shrine.alliance.first);
 const shrineFirstYou = num.format(shrine.personal.first);
+
+// The zone leads, in zone order — the chain of command, read straight off
+// the roster so it cannot fall out of step with the cards above it.
+const chain = SL.plan.zones
+  .filter((k) => legion.zones[k])
+  .map((k) => ({ key: k, lead: legion.zones[k].lead }));
+
+const sharedNames = new Intl.ListFormat(lang, { type: 'conjunction' })
+  .format(SL.plan.sharedObjectives.map((b) => t(`bld.${b}`)));
 ---
 <section class="band hero">
   <div class="wrap">
     <p class="eyebrow">{t('sl.eyebrow')}</p>
     <h1 class="hero__title">{t('sl.title')}</h1>
-    <p class="hero__thesis">{t('sl.thesis', { minutes: SL.matchMinutes })}</p>
+    <p class="hero__thesis">{t('sl.thesis', {
+      n: onField, subs: reserve, zones: zoneCount,
+    })}</p>
+    <p class="hero__act"><a class="btn" href="#zones">{t('sl.cta')}</a></p>
     <Countdown lang={lang} />
   </div>
 </section>
 
+<section class="band band--iron" id="zones">
+  <div class="wrap">
+    <h2 class="h-section">{t('sl.zones.title')}</h2>
+    <p class="lede">{t('sl.zones.lede', { n: onField, zones: zoneCount })}</p>
+    <p class="lede">{t('sl.zones.shared', { shrine: sharedNames })}</p>
+    <Zones lang={lang} />
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <h2 class="h-section">{t('sl.flex.title')}</h2>
+    <p class="lede">{t('sl.flex.lede')}</p>
+    <ol class="steps">
+      {SL.plan.flexDuties.map((key, i) => (
+        <li class="step">
+          <p class="step__when">{num.format(i + 1)}</p>
+          <div>
+            <h3 class="step__title">{t(`flex.${key}.title`)}</h3>
+            <p class="step__body">{t(`flex.${key}.body`)}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+    <p class="waves__warn">{t('sl.flex.fallback')}</p>
+  </div>
+</section>
+
+<section class="band band--drift">
+  <div class="wrap">
+    <h2 class="h-section">{t('sl.reserve.title')}</h2>
+    <p class="bignum">{reserve}</p>
+    <p class="numlabel">{t('sl.reserve.numlabel')}</p>
+    <p class="lede">{t('sl.reserve.lede')}</p>
+    <Reserve lang={lang} />
+
+    <div class="caveat">
+      <p class="caveat__head">{t('sl.reserve.head')}</p>
+      <p class="caveat__body">{t('sl.reserve.body')}</p>
+      <p class="caveat__do">{t('sl.reserve.do')}</p>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <h2 class="h-section">{t('sl.orders.title')}</h2>
+    <p class="lede">{t('sl.orders.lede')}</p>
+    {SL.plan.orders.map((key, i) => (
+      <div class="rule">
+        <p class="rule__tag">{t('sl.orders.tag', { n: num.format(i + 1) })}</p>
+        <div class="rule__body">
+          <h3 class="rule__title">{t(`order.${key}.title`, { shrine: sharedNames })}</h3>
+          <p class="step__body">{t(`order.${key}.body`, { shrine: sharedNames })}</p>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
+
 <section class="band band--iron">
+  <div class="wrap">
+    <h2 class="h-section">{t('sl.chain.title')}</h2>
+    <p class="lede">{t('sl.chain.lede')}</p>
+    <ul class="chain">
+      {chain.map(({ key, lead }) => (
+        <li class="chain__row" data-zone={key}>
+          <span class="chain__zone">{t('zone.name', { zone: t(`zone.${key}.name`) })}</span>
+          <span class="chain__lead">{lead.name}</span>
+        </li>
+      ))}
+    </ul>
+    <p class="picks__note">{t('sl.chain.note')}</p>
+  </div>
+</section>
+
+{/* Everything below is how the GAME works. Same for both sides, and the
+    reason the plan above is shaped the way it is. */}
+<section class="band">
   <div class="wrap">
     <h2 class="h-section">{t('sl.roster.title')}</h2>
     <p class="bignum">{mains}</p>
@@ -145,14 +249,5 @@ const shrineFirstYou = num.format(shrine.personal.first);
         <p class="faq__a">{t('sl.points.a', { attackPay, defendPay, payRatio })}</p>
       </div>
     </div>
-  </div>
-</section>
-
-{/* Where UNITY's own plan goes. Until it is written down the page says so in
-    as many words, rather than filling the space with someone else's. */}
-<section class="band band--drift">
-  <div class="wrap">
-    <h2 class="h-section">{t('sl.plan.title')}</h2>
-    <p class="lede">{t('sl.plan.body')}</p>
   </div>
 </section>
