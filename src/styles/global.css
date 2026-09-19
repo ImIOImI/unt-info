@@ -154,7 +154,10 @@ img { max-width: 100%; height: auto; display: block; }
 /* ── Hero ──────────────────────────────────────────────────────────────── */
 .hero { padding-block: clamp(2.5rem, 9vw, 5.5rem) clamp(2.5rem, 8vw, 4rem); }
 .hero__title {
-  font-size: clamp(4rem, 21vw, 12rem);
+  /* 21vw overflowed on a phone: "SWORDLAND" is nine characters and at 400px
+     it ran past the gutter. 17vw fits the longest title we have without
+     touching the desktop size, which hits the 12rem cap either way. */
+  font-size: clamp(2.75rem, 17vw, 12rem);
   font-variation-settings: 'wdth' 80;
   letter-spacing: -0.035em;
   line-height: 0.82;

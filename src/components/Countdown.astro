@@ -18,7 +18,12 @@ const { anchor, everyDays, windowMinutes } = EVENT.swordland.schedule;
 
 const units = ['days', 'hours', 'minutes', 'seconds'] as const;
 ---
-{isTodo(anchor) ? <p class="cd cd--todo"><Todo value={anchor} label={t('todo.label')} /></p> : (
+{isTodo(anchor) ? (
+<p class="cd cd--todo">
+  <span class="cd__state">{t('cd.until')}</span>
+  <Todo value={anchor} label={t('todo.label')} />
+</p>
+) : (
 <div
   class="cd"
   data-cd
