@@ -14,7 +14,7 @@
  * and are just as true for whoever we are drawn against.
  */
 import { EVENT, isTodo } from '../../content/event';
-import { LEGIONS, starters } from '../../content/legions';
+import { LEGIONS, ROSTER_FETCHED_AT, starters } from '../../content/legions';
 import { useTranslations, type Lang } from '../../i18n/ui';
 import Todo from '../Todo.astro';
 import Countdown from '../Countdown.astro';
@@ -30,13 +30,17 @@ const t = useTranslations(lang);
 
 const num = new Intl.NumberFormat(lang);
 const SL = EVENT.swordland;
-const legion = LEGIONS[0];
 
-// Counted from the roster rather than written down, so the headline number
-// can never disagree with the names underneath it.
-const onField = num.format(starters(legion));
-const reserve = num.format(legion.subs.length);
+// Counted from the team sheet rather than written down, so the headline
+// numbers can never disagree with the names underneath them. Both Legions
+// field the same shape; if that ever stops being true the hero says so
+// because it reads the larger of the two rather than assuming.
+const onField = num.format(Math.max(...LEGIONS.map(starters)));
+const reserve = num.format(Math.max(...LEGIONS.map((l) => l.subs.length)));
+const legionCount = num.format(LEGIONS.length);
 const zoneCount = num.format(SL.plan.zones.length);
+const syncedOn = new Intl.DateTimeFormat(lang, { dateStyle: 'long' })
+  .format(new Date(ROSTER_FETCHED_AT));
 
 const mains = num.format(SL.legion.mains);
 const subs = num.format(SL.legion.subs);
@@ -63,9 +67,13 @@ const shrineFirstYou = num.format(shrine.personal.first);
 
 // The zone leads, in zone order — the chain of command, read straight off
 // the roster so it cannot fall out of step with the cards above it.
-const chain = SL.plan.zones
-  .filter((z) => legion.zones[z.key])
-  .map((z) => ({ key: z.key, lead: legion.zones[z.key].lead }));
+// The chain of command differs per Legion, so it is built per Legion and
+// read straight off the zone leads rather than typed a second time.
+const chains = LEGIONS.map((l) => ({
+  n: l.n,
+  rows: SL.plan.zones.filter((z) => l.zones[z.key])
+    .map((z) => ({ key: z.key, lead: l.zones[z.key].lead })),
+}));
 
 // Which zones the Undercellars actually spawn in. Read off the map rather
 // than assumed even, because they are not: two zones have two each and two
@@ -85,7 +93,7 @@ const sharedNames = new Intl.ListFormat(lang, { type: 'conjunction' })
     <p class="eyebrow">{t('sl.eyebrow')}</p>
     <h1 class="hero__title">{t('sl.title')}</h1>
     <p class="hero__thesis">{t('sl.thesis', {
-      n: onField, subs: reserve, zones: zoneCount,
+      n: onField, subs: reserve, zones: zoneCount, legions: legionCount,
     })}</p>
     <p class="hero__act"><a class="btn" href="#zones">{t('sl.cta')}</a></p>
     <Countdown lang={lang} />
@@ -97,7 +105,22 @@ const sharedNames = new Intl.ListFormat(lang, { type: 'conjunction' })
     <h2 class="h-section">{t('sl.zones.title')}</h2>
     <p class="lede">{t('sl.zones.lede', { n: onField, zones: zoneCount })}</p>
     <p class="lede">{t('sl.zones.shared', { shrine: sharedNames })}</p>
-    <Zones lang={lang} />
+
+    <div class="legionpick" role="group" aria-label={t('legion.choose')} data-legionpick>
+      {LEGIONS.map((l, i) => (
+        <button type="button" data-pick={l.n} aria-pressed={i === 0 ? 'true' : 'false'}>
+          {t('legion.pick', { n: num.format(l.n) })}
+        </button>
+      ))}
+    </div>
+
+    {LEGIONS.map((l) => (
+      <div data-legion={l.n}>
+        <h3 class="legionhd">{t('legion.pick', { n: num.format(l.n) })}</h3>
+        <Zones lang={lang} legion={l} />
+      </div>
+    ))}
+    <p class="picks__note">{t('sl.zones.synced', { date: syncedOn })}</p>
   </div>
 </section>
 
@@ -139,7 +162,20 @@ const sharedNames = new Intl.ListFormat(lang, { type: 'conjunction' })
     <p class="bignum">{reserve}</p>
     <p class="numlabel">{t('sl.reserve.numlabel')}</p>
     <p class="lede">{t('sl.reserve.lede')}</p>
-    <Reserve lang={lang} />
+    <div class="legionpick" role="group" aria-label={t('legion.choose')} data-legionpick>
+      {LEGIONS.map((l, i) => (
+        <button type="button" data-pick={l.n} aria-pressed={i === 0 ? 'true' : 'false'}>
+          {t('legion.pick', { n: num.format(l.n) })}
+        </button>
+      ))}
+    </div>
+
+    {LEGIONS.map((l) => (
+      <div data-legion={l.n}>
+        <h3 class="legionhd">{t('legion.pick', { n: num.format(l.n) })}</h3>
+        <Reserve lang={lang} legion={l} />
+      </div>
+    ))}
 
     <div class="caveat">
       <p class="caveat__head">{t('sl.reserve.head')}</p>
@@ -169,14 +205,27 @@ const sharedNames = new Intl.ListFormat(lang, { type: 'conjunction' })
   <div class="wrap">
     <h2 class="h-section">{t('sl.chain.title')}</h2>
     <p class="lede">{t('sl.chain.lede')}</p>
-    <ul class="chain">
-      {chain.map(({ key, lead }) => (
-        <li class="chain__row" data-zone={key}>
-          <span class="chain__zone">{t('zone.name', { zone: t(`zone.${key}.name`) })}</span>
-          <span class="chain__lead">{lead.name}</span>
-        </li>
+    <div class="legionpick" role="group" aria-label={t('legion.choose')} data-legionpick>
+      {LEGIONS.map((l, i) => (
+        <button type="button" data-pick={l.n} aria-pressed={i === 0 ? 'true' : 'false'}>
+          {t('legion.pick', { n: num.format(l.n) })}
+        </button>
       ))}
-    </ul>
+    </div>
+
+    {chains.map(({ n, rows }) => (
+      <div data-legion={n}>
+        <h3 class="legionhd">{t('legion.pick', { n: num.format(n) })}</h3>
+        <ul class="chain">
+          {rows.map(({ key, lead }) => (
+            <li class="chain__row" data-zone={key}>
+              <span class="chain__zone">{t('zone.name', { zone: t(`zone.${key}.name`) })}</span>
+              <span class="chain__lead">{lead.name}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    ))}
     <p class="picks__note">{t('sl.chain.note')}</p>
   </div>
 </section>
@@ -276,3 +325,27 @@ const sharedNames = new Intl.ListFormat(lang, { type: 'conjunction' })
     </div>
   </div>
 </section>
+
+<script>
+  /* One picker, three places on the page that answer to it. With no
+     JavaScript every Legion stays visible under its own heading, so the
+     page is complete rather than showing two dead buttons — the same
+     bargain the countdown makes. */
+  const pickers = [...document.querySelectorAll<HTMLElement>('[data-legionpick]')];
+  if (pickers.length) {
+    const blocks = [...document.querySelectorAll<HTMLElement>('[data-legion]')];
+    const buttons = pickers.flatMap((p) =>
+      [...p.querySelectorAll<HTMLButtonElement>('[data-pick]')]);
+
+    // Every picker shows the same Legion — switching at the bottom of the
+    // page must not leave the top disagreeing with it.
+    const show = (n: string) => {
+      for (const b of blocks) b.hidden = b.dataset.legion !== n;
+      for (const b of buttons) b.setAttribute('aria-pressed', String(b.dataset.pick === n));
+    };
+
+    document.documentElement.classList.add('legions-live');
+    for (const b of buttons) b.addEventListener('click', () => show(b.dataset.pick!));
+    show(buttons[0]?.dataset.pick ?? '1');
+  }
+</script>

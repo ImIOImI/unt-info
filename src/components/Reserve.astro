@@ -7,31 +7,33 @@
  * Portrait tiles come from global.css, shared with the zone cards.
  */
 import { Image } from 'astro:assets';
-import { LEGIONS, initial } from '../content/legions';
-import { type Lang } from '../i18n/ui';
+import { initial, type Legion, type Player } from '../content/legions';
+import { useTranslations, type Lang } from '../i18n/ui';
 
-interface Props { lang: Lang }
-const { lang } = Astro.props;
-void lang;
+interface Props { lang: Lang; legion: Legion }
+const { lang, legion } = Astro.props;
+const t = useTranslations(lang);
 
-const subs = LEGIONS[0].subs;
+const subs = legion.subs;
 
 const faces = import.meta.glob<{ default: ImageMetadata }>(
   '/src/avatars/*.{png,jpg,jpeg,webp}',
   { eager: true },
 );
-const faceFor = (stem: string) =>
-  Object.entries(faces).find(([p]) => new RegExp(`/${stem}\\.[a-z]+$`, 'i').test(p))?.[1].default;
+const faceFor = (p: Player) => p.avatar
+  ? Object.entries(faces).find(([f]) => f.endsWith(`/${p.avatar}`))?.[1].default
+  : undefined;
 ---
 <ul class="faces faces--reserve">
   {subs.map((p) => {
-    const face = faceFor(p.avatar);
+    const face = faceFor(p);
     return (
       <li class="face">
         {face
           ? <Image class="face__img" src={face} alt="" widths={[80, 160]} sizes="72px" loading="lazy" />
           : <span class="face__img face__img--blank" aria-hidden="true">{initial(p.name)}</span>}
         <span class="face__name">{p.name}</span>
+        {p.unverified && <span class="face__warn" title={t('zone.unverified')}>?</span>}
       </li>
     );
   })}
@@ -39,4 +41,13 @@ const faceFor = (stem: string) =>
 
 <style>
   .faces--reserve { margin-bottom: 0; }
+  /* Same marker as the zone cards; those styles are scoped, so it is
+     repeated here rather than reached for across a component boundary. */
+  .face__warn {
+    display: inline-grid; place-items: center;
+    inline-size: 1.05em; block-size: 1.05em; margin-inline-start: 0.3em;
+    border-radius: 50%; background: var(--ember); color: var(--snow);
+    font-family: var(--display); font-weight: 900; font-size: 0.72em;
+    cursor: help;
+  }
 </style>

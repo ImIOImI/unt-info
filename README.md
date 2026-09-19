@@ -23,7 +23,8 @@ npm run build    # static output in dist/
 | What | Where |
 |---|---|
 | **Event facts and our plan — the file you edit** | `src/content/event.ts` |
-| The order of battle — who is in which zone | `src/content/legions.ts` |
+| The order of battle — who is in which zone | `src/content/legions.json` |
+| Names, ranks, portraits (generated) | `src/content/roster.json` |
 | Translated sentences | `src/i18n/locales/<lang>.json` |
 | Player portraits | `src/avatars/<avatar>.png` |
 | Screenshots and the battlefield map | `src/shots/` |
@@ -45,17 +46,39 @@ keeps the two apart so a reader can tell which is which.
 
 ## Changing the roster
 
-`src/content/legions.ts` is the team sheet: four zones, each with a lead, the
-players holding a named building, and the flex group. Names are written
-exactly as the game prints them, checked against
-`/alliances/976/UNT?include=roster` rather than typed from the order — a name
-a player cannot copy into chat is no use to them.
+`src/content/legions.json` is the team sheet: two Legions, four zones each,
+every player placed by **governor_id**. Move an id between zones, or swap one
+in from the reserve, and you are done.
 
-Headcounts are never written down. The page counts the roster, so moving
-someone between zones updates every number that mentions them.
+```bash
+npm run sync:roster          # refresh names, ranks and portraits
+npm run sync:roster -- --force   # re-download every avatar
+```
 
-Drop a portrait at `src/avatars/<avatar>.png` to replace a lettered tile. No
-code change, and a missing file is not an error.
+That makes one API call for the whole alliance and rewrites
+`src/content/roster.json`, downloading any portrait it does not already have
+into `src/avatars/<governor_id>.png`. It also refreshes the `_name` beside
+each id in `legions.json`, which exists purely so the file is readable — it
+is never the source of truth.
+
+**Why ids and not names.** Kingshot names carry characters a human copy
+mangles. Fifteen of the first forty names on this site were typed with a
+normal space where the game uses U+00A0: identical on screen, a different
+string underneath. Players also rename themselves — the Yellow lead of Legion
+1 is written "PickYourToe" in the operation order and `PickYourFateᵁᴺᵀ` in
+game. An id survives both.
+
+The script exits non-zero and names anyone it could not resolve, either
+because they left the alliance or because no account matches. They still
+render, marked with an orange `?`, because quietly dropping someone would
+contradict the order's own headcount.
+
+Headcounts are never written down. The page counts the team sheet, so moving
+someone updates every number that mentions them. The zone priority chain is
+read off the holders in card order for the same reason.
+
+Players on a stock game icon keep a lettered tile — five identical default
+portraits are worse than five distinct letters at the one job the tile has.
 
 ## Languages
 

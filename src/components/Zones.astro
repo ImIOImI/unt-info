@@ -18,23 +18,23 @@
  */
 import { Image } from 'astro:assets';
 import { EVENT } from '../content/event';
-import { LEGIONS, initial, zoneRoll, type Player } from '../content/legions';
+import { initial, priority, zoneRoll, type Legion, type Player } from '../content/legions';
 import { useTranslations, type Lang } from '../i18n/ui';
 
-interface Props { lang: Lang }
-const { lang } = Astro.props;
+interface Props { lang: Lang; legion: Legion }
+const { lang, legion } = Astro.props;
 const t = useTranslations(lang);
 
 const num = new Intl.NumberFormat(lang);
 const SL = EVENT.swordland;
-const legion = LEGIONS[0];
 
 const faces = import.meta.glob<{ default: ImageMetadata }>(
   '/src/avatars/*.{png,jpg,jpeg,webp}',
   { eager: true },
 );
-const faceFor = (stem: string) =>
-  Object.entries(faces).find(([p]) => new RegExp(`/${stem}\\.[a-z]+$`, 'i').test(p))?.[1].default;
+const faceFor = (p: Player) => p.avatar
+  ? Object.entries(faces).find(([f]) => f.endsWith(`/${p.avatar}`))?.[1].default
+  : undefined;
 
 const phaseTwoAt = SL.phases.find((p) => p.key === 'two')?.at;
 
@@ -75,9 +75,19 @@ function waitsFor(p: Player): number | null {
           <p class="zone__n">{num.format(zoneRoll(zone).length)}</p>
         </header>
 
+        <p class="zone__prio">
+          <span class="zone__priohd">{t('zone.priority')}</span>
+          {priority(zone).map((p, i) => (
+            <>
+              {i > 0 && <span class="zone__arrow" aria-hidden="true">→</span>}
+              <span class="zone__step">{objective(p)}</span>
+            </>
+          ))}
+        </p>
+
         <ol class="holds">
           {commands.map((p, i) => {
-            const face = faceFor(p.avatar);
+            const face = faceFor(p);
             const late = waitsFor(p);
             return (
               <li class="hold" data-lead={i === 0 ? '1' : undefined}>
@@ -86,7 +96,7 @@ function waitsFor(p: Player): number | null {
                   : <span class="hold__img hold__img--blank" aria-hidden="true">{initial(p.name)}</span>}
                 <div class="hold__txt">
                   <p class="hold__role">{i === 0 ? t('zone.lead') : t('zone.holds')}</p>
-                  <p class="hold__name">{p.name}</p>
+                  <p class="hold__name">{p.name}{p.unverified && <span class="face__warn" title={t('zone.unverified')}>?</span>}</p>
                   <p class="hold__obj">
                     {objective(p)}
                     {late !== null && <>{' '}<span class="hold__late">{t('bt.opensat', { n: late })}</span></>}
@@ -101,13 +111,14 @@ function waitsFor(p: Player): number | null {
           <p class="zone__flexhd">{t('zone.flex', { n: num.format(zone.flex.length) })}</p>
           <ul class="faces">
             {zone.flex.map((p) => {
-              const face = faceFor(p.avatar);
+              const face = faceFor(p);
               return (
                 <li class="face">
                   {face
                     ? <Image class="face__img" src={face} alt="" widths={[80, 160]} sizes="72px" loading="lazy" />
                     : <span class="face__img face__img--blank" aria-hidden="true">{initial(p.name)}</span>}
                   <span class="face__name">{p.name}</span>
+                  {p.unverified && <span class="face__warn" title={t('zone.unverified')}>?</span>}
                 </li>
               );
             })}
@@ -191,6 +202,30 @@ function waitsFor(p: Player): number | null {
     text-transform: uppercase; letter-spacing: 0.06em;
     color: rgb(237 241 245 / 0.5);
     white-space: nowrap;
+  }
+
+  .zone__prio {
+    margin: 0 0 1.1rem; display: flex; flex-wrap: wrap;
+    align-items: baseline; gap: 0.3rem 0.45rem;
+    font-size: 0.8125rem; color: rgb(237 241 245 / 0.78);
+  }
+  .zone__priohd {
+    font-family: var(--display); font-weight: 700; font-size: 0.625rem;
+    text-transform: uppercase; letter-spacing: 0.14em;
+    color: rgb(237 241 245 / 0.55);
+    margin-inline-end: 0.2rem;
+  }
+  .zone__arrow { color: var(--zc); }
+  /* The chain reads left-to-right even in Arabic: it is a sequence of
+     steps, and the arrow is the direction of time, not of text. */
+  :global([dir='rtl']) .zone__prio { direction: ltr; justify-content: flex-end; }
+
+  .face__warn {
+    display: inline-grid; place-items: center;
+    inline-size: 1.05em; block-size: 1.05em; margin-inline-start: 0.3em;
+    border-radius: 50%; background: var(--ember-lift); color: var(--iron);
+    font-family: var(--display); font-weight: 900; font-size: 0.72em;
+    vertical-align: baseline; cursor: help;
   }
 
   .zone__flexhd {

@@ -19,7 +19,7 @@
   "home.card.swordland": "Trente joueurs, une heure, une carte. Qui fait quoi, et quand.",
   "sl.eyebrow": "Alliance contre alliance · toutes les deux semaines",
   "sl.title": "Swordland Showdown",
-  "sl.thesis": "{n} titulaires, {subs} en réserve, {zones} zones, une seule mission. Chacun entre en sachant où il est, ce qu'il tient et qui il suit. On ne règle pas les affectations après le coup de sifflet.",
+  "sl.thesis": "{legions} Légions de {n}, plus {subs} en réserve chacune, {zones} zones, une seule mission. Chacun entre en sachant où il est, ce qu’il tient et qui il suit. On ne règle pas les affectations après le coup de sifflet.",
   "sl.roster.title": "Qui entre en lice",
   "sl.roster.numlabel": "Combattants principaux par Légion",
   "sl.roster.lede": "Une Légion, c'est {mains} combattants principaux plus {subs} remplaçants. Seules les {top} premières alliances en puissance peuvent s'inscrire, donc une place n'est jamais acquise simplement parce que tu t'es porté volontaire.",
@@ -111,7 +111,7 @@
   "sl.reserve.lede": "Les places de titulaire que personne ne réclame s'ouvrent aux remplaçants quelques minutes après le début, premier arrivé premier servi.",
   "sl.reserve.head": "Les remplaçants ne sont pas des spectateurs.",
   "sl.reserve.body": "Tu peux être appelé dans n'importe laquelle des quatre zones, et personne ne te fera de briefing à ce moment-là. Connais tout le plan — chaque zone, chaque chef, chaque objectif — pas seulement celle où tu penses atterrir.",
-  "sl.reserve.do": "Si on t'appelle : signale-toi au chef de cette zone, dis que tu es dedans, et exécute. Sois en ligne au départ, que tu attendes une place ou non.",
+  "sl.reserve.do": "Si on t’appelle : signale-toi au chef de cette zone, dis que tu es dedans, et reprends le poste de celui que tu remplaces. Sois en ligne au départ, que tu attendes une place ou non.",
   "sl.orders.title": "Ordres pour toute la Légion",
   "sl.orders.lede": "Ils priment sur tout le reste de cette page. Quand deux d'entre eux tirent en sens contraire, le plus petit numéro l'emporte.",
   "sl.orders.tag": "Ordre {n}",
@@ -139,5 +139,14 @@
   "sl.map.lede": "Quatre zones autour d’un centre commun. {shrine} est au milieu et n’appartient à personne — tout le reste est dans la couleur de quelqu’un.",
   "sl.map.cap": "Limites des zones et emplacements des bâtiments, d’après l’ordre d’opération de la Légion 1. Les libellés sur la carte sont en anglais ; chaque bâtiment est nommé dans ta langue ailleurs sur cette page.",
   "sl.map.alt": "Carte de l’arène de Swordland, divisée en quatre zones colorées autour d’un Sanctuaire de l’Épée central.",
-  "sl.map.cellars": "Les {n} Sous-caves n’apparaissent que dans {zones}. Les deux autres zones n’en ont aucune — si tu y es Flex et qu’on appelle à récolter, demande à ton chef de zone avant de quitter ta couleur."
+  "sl.map.cellars": "Les {n} Sous-caves n’apparaissent que dans {zones}. Les deux autres zones n’en ont aucune — si tu y es Flex et qu’on appelle à récolter, demande à ton chef de zone avant de quitter ta couleur.",
+  "legion.pick": "Légion {n}",
+  "legion.choose": "Choisir une Légion",
+  "zone.priority": "Priorité",
+  "zone.unverified": "Aucun compte correspondant trouvé en jeu — vérifie ce nom.",
+  "sl.zones.synced": "Noms, rangs et portraits récupérés depuis MightPulse le {date}.",
+  "order.communicate.title": "Dis ce que tu vois",
+  "order.communicate.body": "Mouvements ennemis, attaques en approche, une garnison vide, un bâtiment sur le point de basculer — annonce-le. Un chef de zone ne peut diriger que ce qu’on lui rapporte, et ce que tu crois que tout le monde a vu, personne ne l’a signalé.",
+  "order.nowaste.title": "Ne gaspille pas tes marches",
+  "order.nowaste.body": "Chaque marche envoyée pour rien est une marche qui ne défend pas un bâtiment au moment où le coup tombe. Bouge avec une raison : le temps de recharge que tu économises est celui qui comptera plus tard."
 }

@@ -802,6 +802,45 @@ img { max-width: 100%; height: auto; display: block; }
   font-size: 0.8125rem; line-height: 1.5; color: var(--ink-soft);
 }
 
+/* Legion picker. Hidden until the script proves it works; the headings it
+   replaces are only hidden once JS has taken over, so a no-JS reader gets
+   both Legions, each labelled. */
+.legionpick { display: none; margin: 0 0 2rem; }
+.legions-live .legionpick { display: flex; }
+.legions-live .legionhd {
+  position: absolute; width: 1px; height: 1px;
+  overflow: hidden; clip-path: inset(50%); white-space: nowrap;
+}
+.legionhd {
+  font-size: 1.15rem; margin: 2.5rem 0 1.5rem;
+  padding-bottom: 0.5rem; border-bottom: 2px solid var(--ember-lift);
+}
+[data-legion] + [data-legion] .legionhd { margin-top: 3.5rem; }
+
+.legionpick button {
+  font-family: var(--display);
+  font-weight: 700; font-size: 0.8125rem;
+  text-transform: uppercase; letter-spacing: 0.1em;
+  padding: 0.6rem 1.2rem;
+  color: rgb(237 241 245 / 0.72);
+  background: transparent;
+  border: 1px solid rgb(237 241 245 / 0.28);
+  margin-inline-end: -1px;
+  cursor: pointer;
+}
+.legionpick button[aria-pressed='true'] {
+  background: var(--ember-lift); border-color: var(--ember-lift);
+  color: var(--iron); position: relative; z-index: 1;
+}
+.legionpick button:focus-visible { outline: 2px solid var(--ember-lift); outline-offset: 2px; }
+
+/* On a light band the picker needs the ink-side treatment. */
+.band:not(.band--iron) .legionpick button { color: var(--ink-soft); border-color: var(--hair); }
+.band:not(.band--iron) .legionpick button[aria-pressed='true'] {
+  background: var(--ember); border-color: var(--ember); color: var(--snow);
+}
+.band:not(.band--iron) .legionhd { border-bottom-color: var(--ember); }
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after {

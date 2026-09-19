@@ -19,7 +19,7 @@
   "home.card.swordland": "Thirty players, one hour, one map. Who does what, and when.",
   "sl.eyebrow": "Alliance vs alliance · every two weeks",
   "sl.title": "Swordland Showdown",
-  "sl.thesis": "{n} starters, {subs} in reserve, {zones} zones, one mission. Everyone goes in knowing where they belong, what they hold and who they follow. We do not work out assignments after the whistle.",
+  "sl.thesis": "{legions} Legions of {n}, {subs} in reserve each, {zones} zones, one mission. Everyone goes in knowing where they belong, what they hold and who they follow. We do not work out assignments after the whistle.",
   "sl.roster.title": "Who takes the field",
   "sl.roster.numlabel": "Main fighters per Legion",
   "sl.roster.lede": "A Legion is {mains} main fighters plus {subs} substitutes. Only the top {top} alliances by power can register at all, so a seat is never guaranteed just because you signed up.",
@@ -111,7 +111,7 @@
   "sl.reserve.lede": "Main slots nobody claims open to the substitutes a few minutes in, first come first served.",
   "sl.reserve.head": "Substitutes are not spectators.",
   "sl.reserve.body": "You can be activated into any of the four zones, and nobody will brief you when it happens. Know the whole plan — every zone, every lead, every objective — not only the one you expect to land in.",
-  "sl.reserve.do": "If you are called: report to that zone's lead, say you are in, and execute. Be online at the start whether or not you expect a slot.",
+  "sl.reserve.do": "If you are called: report to that zone’s lead, say you are in, and take over the position of whoever you replaced. Be online at the start whether or not you expect a slot.",
   "sl.orders.title": "Legion-wide orders",
   "sl.orders.lede": "These outrank everything else on this page. When two of them pull against each other, the lower number wins.",
   "sl.orders.tag": "Order {n}",
@@ -139,5 +139,14 @@
   "sl.map.lede": "Four zones around a shared centre. {shrine} sits in the middle and belongs to nobody — everything else is inside somebody’s colour.",
   "sl.map.cap": "Zone boundaries and building positions, from the Legion 1 operation order. Labels are in English on the map itself; every building is named in your language elsewhere on this page.",
   "sl.map.alt": "Map of the Swordland arena, divided into four coloured zones around a central Swordshrine.",
-  "sl.map.cellars": "The {n} Undercellars spawn in {zones} only. The other two zones have none of their own — if you are Flex there and the call goes out to gather, ask your zone lead before you leave your colour."
+  "sl.map.cellars": "The {n} Undercellars spawn in {zones} only. The other two zones have none of their own — if you are Flex there and the call goes out to gather, ask your zone lead before you leave your colour.",
+  "legion.pick": "Legion {n}",
+  "legion.choose": "Choose a Legion",
+  "zone.priority": "Priority",
+  "zone.unverified": "No matching account found in game — check this name.",
+  "sl.zones.synced": "Names, ranks and faces pulled from MightPulse on {date}.",
+  "order.communicate.title": "Say what you can see",
+  "order.communicate.body": "Enemy movements, incoming attacks, an empty garrison, a building about to flip — call it. A zone lead can only direct what somebody tells them about, and the thing you assume everyone noticed is usually the thing nobody did.",
+  "order.nowaste.title": "Do not waste marches",
+  "order.nowaste.body": "Every march sent somewhere pointless is one that is not defending a building when the hit lands. Move with a reason, and let the cooldown you save be the one that matters later."
 }

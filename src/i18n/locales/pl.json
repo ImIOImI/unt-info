@@ -19,7 +19,7 @@
   "home.card.swordland": "Trzydziestu graczy, godzina, jedna mapa. Kto co robi i kiedy.",
   "sl.eyebrow": "Sojusz przeciw sojuszowi · co dwa tygodnie",
   "sl.title": "Swordland Showdown",
-  "sl.thesis": "{n} w podstawowym składzie, {subs} w rezerwie, {zones} strefy, jedna misja. Każdy wchodzi wiedząc, gdzie należy, co trzyma i za kim idzie. Przydziałów nie ustalamy po gwizdku.",
+  "sl.thesis": "{legions} Legiony po {n} osób, plus {subs} w rezerwie każdy, {zones} strefy, jedna misja. Każdy wchodzi wiedząc, gdzie należy, co trzyma i za kim idzie. Przydziałów nie ustalamy po gwizdku.",
   "sl.roster.title": "Kto wychodzi na pole",
   "sl.roster.numlabel": "Główni wojownicy w Legionie",
   "sl.roster.lede": "Legion to {mains} głównych wojowników plus {subs} rezerwowych. Zapisać się może tylko {top} najsilniejszych sojuszy według mocy, więc miejsce nigdy nie jest pewne tylko dlatego, że się zgłosiłeś.",
@@ -111,7 +111,7 @@
   "sl.reserve.lede": "Miejsca w podstawowym składzie, po które nikt się nie zgłosi, otwierają się dla rezerwowych kilka minut po starcie — kto pierwszy, ten lepszy.",
   "sl.reserve.head": "Rezerwowi nie są widzami.",
   "sl.reserve.body": "Możesz zostać wezwany do dowolnej z czterech stref i nikt cię wtedy nie będzie wprowadzał. Znaj cały plan — każdą strefę, każdego dowódcę, każdy cel — nie tylko tę, w której spodziewasz się wylądować.",
-  "sl.reserve.do": "Jeśli cię wezwą: zgłoś się do dowódcy tej strefy, powiedz, że wchodzisz, i wykonuj. Bądź online na starcie, niezależnie od tego, czy liczysz na miejsce.",
+  "sl.reserve.do": "Jeśli cię wezwą: zgłoś się do dowódcy tej strefy, powiedz, że wchodzisz, i przejmij pozycję osoby, którą zastępujesz. Bądź online na starcie, niezależnie od tego, czy liczysz na miejsce.",
   "sl.orders.title": "Rozkazy dla całego Legionu",
   "sl.orders.lede": "Stoją ponad wszystkim innym na tej stronie. Gdy dwa ciągną w przeciwne strony, wygrywa niższy numer.",
   "sl.orders.tag": "Rozkaz {n}",
@@ -139,5 +139,14 @@
   "sl.map.lede": "Cztery strefy wokół wspólnego środka. {shrine} stoi pośrodku i nie należy do nikogo — cała reszta leży w czyjejś barwie.",
   "sl.map.cap": "Granice stref i położenie budynków, z rozkazu operacyjnego Legionu 1. Podpisy na samej mapie są po angielsku; każdy budynek jest nazwany w twoim języku w innym miejscu tej strony.",
   "sl.map.alt": "Mapa areny Swordland, podzielona na cztery kolorowe strefy wokół centralnej Świątyni Miecza.",
-  "sl.map.cellars": "Podziemia ({n}) pojawiają się wyłącznie w strefach: {zones}. Pozostałe dwie nie mają własnych — jeśli jesteś tam Flexem i padnie wezwanie do zbierania, zapytaj dowódcę strefy, zanim wyjdziesz ze swojej barwy."
+  "sl.map.cellars": "Podziemia ({n}) pojawiają się wyłącznie w strefach: {zones}. Pozostałe dwie nie mają własnych — jeśli jesteś tam Flexem i padnie wezwanie do zbierania, zapytaj dowódcę strefy, zanim wyjdziesz ze swojej barwy.",
+  "legion.pick": "Legion {n}",
+  "legion.choose": "Wybierz Legion",
+  "zone.priority": "Kolejność",
+  "zone.unverified": "Nie znaleziono pasującego konta w grze — sprawdź tę nazwę.",
+  "sl.zones.synced": "Nazwy, rangi i twarze pobrane z MightPulse dnia {date}.",
+  "order.communicate.title": "Mów, co widzisz",
+  "order.communicate.body": "Ruchy wroga, nadlatujące ataki, pusty garnizon, budynek bliski przejęcia — zgłaszaj. Dowódca strefy pokieruje tylko tym, o czym mu ktoś powie, a to, co według ciebie wszyscy zauważyli, zwykle nie zostało zgłoszone przez nikogo.",
+  "order.nowaste.title": "Nie marnuj marszów",
+  "order.nowaste.body": "Każdy marsz wysłany bez sensu to marsz, którego nie ma przy budynku, gdy spada cios. Ruszaj się w konkretnym celu — zaoszczędzone odnowienie okaże się tym, które będzie potrzebne później."
 }

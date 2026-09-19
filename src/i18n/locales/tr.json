@@ -19,7 +19,7 @@
   "home.card.swordland": "Otuz oyuncu, bir saat, tek harita. Kim ne yapar, ne zaman yapar.",
   "sl.eyebrow": "İttifaka karşı ittifak · iki haftada bir",
   "sl.title": "Swordland Showdown",
-  "sl.thesis": "{n} asıl oyuncu, {subs} yedek, {zones} bölge, tek görev. Herkes sahaya nereye ait olduğunu, neyi tuttuğunu ve kimi izleyeceğini bilerek çıkar. Görev dağılımını düdükten sonra konuşmuyoruz.",
+  "sl.thesis": "Her biri {n} kişilik {legions} Lejyon, artı {subs} yedek, {zones} bölge, tek görev. Herkes sahaya nereye ait olduğunu, neyi tuttuğunu ve kimi izleyeceğini bilerek çıkar. Görev dağılımını düdükten sonra konuşmuyoruz.",
   "sl.roster.title": "Sahaya kim çıkıyor",
   "sl.roster.numlabel": "Lejyon başına asıl savaşçı",
   "sl.roster.lede": "Bir Lejyon {mains} asıl savaşçı ve {subs} yedekten oluşur. Güce göre yalnızca ilk {top} ittifak kayıt olabilir, yani sırf başvurdun diye yerin garanti değildir.",
@@ -111,7 +111,7 @@
   "sl.reserve.lede": "Kimsenin almadığı asıl yerler, maçın birkaç dakika sonrasında yedeklere açılır; önce gelen alır.",
   "sl.reserve.head": "Yedekler seyirci değildir.",
   "sl.reserve.body": "Dört bölgeden herhangi birine çağrılabilirsin ve o an kimse sana plan anlatmaz. Planın tamamını bil — her bölgeyi, her lideri, her hedefi — sadece düşeceğini sandığın bölgeyi değil.",
-  "sl.reserve.do": "Çağrılırsan: o bölgenin liderine bildir, girdiğini söyle ve planı uygula. Yer bekle ya da bekleme, başlangıçta çevrimiçi ol.",
+  "sl.reserve.do": "Çağrılırsan: o bölgenin liderine bildir, girdiğini söyle ve yerine geçtiğin kişinin görevini devral. Yer bekle ya da bekleme, başlangıçta çevrimiçi ol.",
   "sl.orders.title": "Lejyon geneli emirler",
   "sl.orders.lede": "Bunlar bu sayfadaki her şeyin üstündedir. İkisi ters yöne çekerse, küçük numaralı olan kazanır.",
   "sl.orders.tag": "Emir {n}",
@@ -139,5 +139,14 @@
   "sl.map.lede": "Ortak bir merkezin çevresinde dört bölge. {shrine} tam ortada durur ve kimseye ait değildir; geri kalan her şey birinin renginin içindedir.",
   "sl.map.cap": "Bölge sınırları ve bina konumları, Lejyon 1 harekât emrinden. Haritanın üzerindeki etiketler İngilizce; her bina bu sayfanın başka yerinde kendi dilinde de geçiyor.",
   "sl.map.alt": "Swordland arenasının haritası: ortadaki Kılıç Mabedi çevresinde dört renkli bölgeye ayrılmış.",
-  "sl.map.cellars": "{n} Yeraltı Mahzeni yalnızca {zones} içinde çıkar. Diğer iki bölgenin kendine ait mahzeni yoktur; orada esnek oyuncuysan ve toplama çağrısı gelirse, kendi renginden çıkmadan önce bölge liderine sor."
+  "sl.map.cellars": "{n} Yeraltı Mahzeni yalnızca {zones} içinde çıkar. Diğer iki bölgenin kendine ait mahzeni yoktur; orada esnek oyuncuysan ve toplama çağrısı gelirse, kendi renginden çıkmadan önce bölge liderine sor.",
+  "legion.pick": "Lejyon {n}",
+  "legion.choose": "Lejyon seç",
+  "zone.priority": "Öncelik",
+  "zone.unverified": "Oyunda eşleşen hesap bulunamadı — bu adı kontrol et.",
+  "sl.zones.synced": "İsimler, rütbeler ve yüzler {date} tarihinde MightPulse’tan alındı.",
+  "order.communicate.title": "Gördüğünü söyle",
+  "order.communicate.body": "Düşman hareketi, gelen saldırı, boş garnizon, el değiştirmek üzere olan bina — hepsini duyur. Bölge lideri ancak kendisine söyleneni yönetebilir; herkesin fark ettiğini sandığın şeyi genelde kimse fark etmemiştir.",
+  "order.nowaste.title": "Yürüyüş harcama",
+  "order.nowaste.body": "Boşuna gönderilen her yürüyüş, darbe geldiğinde bir binayı savunmuyor demektir. Sebebi varsa hareket et; kazandığın bekleme süresi sonradan işine yarayacak olandır."
 }

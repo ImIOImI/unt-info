@@ -19,7 +19,7 @@
   "home.card.swordland": "Dreißig Spieler, eine Stunde, eine Karte. Wer was macht, und wann.",
   "sl.eyebrow": "Allianz gegen Allianz · alle zwei Wochen",
   "sl.title": "Swordland Showdown",
-  "sl.thesis": "{n} Starter, {subs} in Reserve, {zones} Zonen, eine Mission. Jeder geht hinein und weiß, wohin er gehört, was er hält und wem er folgt. Wir klären Zuteilungen nicht erst nach dem Pfiff.",
+  "sl.thesis": "{legions} Legionen zu je {n}, dazu {subs} in Reserve, {zones} Zonen, eine Mission. Jeder geht hinein und weiß, wohin er gehört, was er hält und wem er folgt. Wir klären Zuteilungen nicht erst nach dem Pfiff.",
   "sl.roster.title": "Wer antritt",
   "sl.roster.numlabel": "Hauptkämpfer pro Legion",
   "sl.roster.lede": "Eine Legion besteht aus {mains} Hauptkämpfern und {subs} Ersatzspielern. Nur die {top} stärksten Allianzen nach Macht dürfen sich überhaupt anmelden — ein Platz ist also nie sicher, nur weil du dich eingetragen hast.",
@@ -111,7 +111,7 @@
   "sl.reserve.lede": "Hauptplätze, die niemand beansprucht, öffnen sich ein paar Minuten nach Beginn für die Ersatzspieler — wer zuerst kommt, mahlt zuerst.",
   "sl.reserve.head": "Ersatzspieler sind keine Zuschauer.",
   "sl.reserve.body": "Du kannst in jede der vier Zonen nachgezogen werden, und niemand wird dich dann noch einweisen. Kenne den ganzen Plan — jede Zone, jede Führung, jedes Ziel — nicht nur die Zone, in der du zu landen erwartest.",
-  "sl.reserve.do": "Wenn du gerufen wirst: melde dich bei der Führung dieser Zone, sag Bescheid, dass du drin bist, und führ den Plan aus. Sei zum Start online, ob du einen Platz erwartest oder nicht.",
+  "sl.reserve.do": "Wenn du gerufen wirst: melde dich bei der Führung dieser Zone, sag Bescheid, dass du drin bist, und übernimm die Position dessen, den du ersetzt. Sei zum Start online, ob du einen Platz erwartest oder nicht.",
   "sl.orders.title": "Befehle für die ganze Legion",
   "sl.orders.lede": "Diese stehen über allem anderen auf dieser Seite. Ziehen zwei davon in verschiedene Richtungen, gewinnt die kleinere Nummer.",
   "sl.orders.tag": "Befehl {n}",
@@ -139,5 +139,14 @@
   "sl.map.lede": "Vier Zonen um eine gemeinsame Mitte. {shrine} steht in der Mitte und gehört niemandem — alles andere liegt in irgendeiner Farbe.",
   "sl.map.cap": "Zonengrenzen und Gebäudepositionen aus der Einsatzordnung von Legion 1. Die Beschriftung auf der Karte ist englisch; jedes Gebäude wird an anderer Stelle auf dieser Seite in deiner Sprache genannt.",
   "sl.map.alt": "Karte der Swordland-Arena, aufgeteilt in vier farbige Zonen rund um einen zentralen Schwertschrein.",
-  "sl.map.cellars": "Die {n} Unterkeller erscheinen nur in {zones}. Die anderen beiden Zonen haben keine eigenen — wenn du dort Flex bist und der Ruf zum Sammeln kommt, frag deine Zonenführung, bevor du deine Farbe verlässt."
+  "sl.map.cellars": "Die {n} Unterkeller erscheinen nur in {zones}. Die anderen beiden Zonen haben keine eigenen — wenn du dort Flex bist und der Ruf zum Sammeln kommt, frag deine Zonenführung, bevor du deine Farbe verlässt.",
+  "legion.pick": "Legion {n}",
+  "legion.choose": "Legion wählen",
+  "zone.priority": "Reihenfolge",
+  "zone.unverified": "Kein passender Account im Spiel gefunden — Namen prüfen.",
+  "sl.zones.synced": "Namen, Ränge und Gesichter am {date} von MightPulse geholt.",
+  "order.communicate.title": "Sag, was du siehst",
+  "order.communicate.body": "Feindbewegungen, anfliegende Angriffe, eine leere Garnison, ein Gebäude kurz vor dem Kippen — sag es an. Eine Zonenführung kann nur lenken, wovon ihr jemand erzählt, und das, was angeblich alle gesehen haben, hat meistens keiner gemeldet.",
+  "order.nowaste.title": "Keine Märsche verschwenden",
+  "order.nowaste.body": "Jeder sinnlos losgeschickte Marsch fehlt an dem Gebäude, auf das gleich der Treffer kommt. Beweg dich mit einem Grund, dann ist die gesparte Abklingzeit die, auf die es später ankommt."
 }

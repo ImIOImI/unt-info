@@ -1,0 +1,418 @@
+[
+  {
+    "n": 1,
+    "zones": {
+      "purple": {
+        "lead": {
+          "id": 105743115,
+          "_name": "JTLomo",
+          "holds": "belltower"
+        },
+        "holders": [
+          {
+            "id": 146753386,
+            "_name": "Supportᵁᴺᵀ",
+            "holds": "abbey",
+            "qual": "purple"
+          },
+          {
+            "id": 143116208,
+            "_name": "༺ᴵ ᵃᵐ Qᴜєєɴ༻ᵁᴺᵀ",
+            "holds": "mercenary"
+          }
+        ],
+        "flex": [
+          {
+            "id": 145458940,
+            "_name": "AkkiLa420BuBuᵁᴺᵀ"
+          },
+          {
+            "id": 144214218,
+            "_name": "AndreBorges ᵁᴺᵀ"
+          },
+          {
+            "id": 85422469,
+            "_name": "raV"
+          },
+          {
+            "id": 106365456,
+            "_name": "domino"
+          },
+          {
+            "id": 87371807,
+            "_name": "Ꭰøɴ Ꭹass2M ᴸᴬᴴ"
+          }
+        ]
+      },
+      "blue": {
+        "lead": {
+          "id": 101065431,
+          "_name": "midgemarine",
+          "holds": "sanctum",
+          "qual": "west"
+        },
+        "holders": [
+          {
+            "id": 84045836,
+            "_name": "BimBam",
+            "holds": "abbey",
+            "qual": "blue"
+          }
+        ],
+        "flex": [
+          {
+            "id": 145966989,
+            "_name": "SmackBuBuᵁᴺᵀ"
+          },
+          {
+            "id": 142821093,
+            "_name": "Uh Angry Gary"
+          },
+          {
+            "id": 85766423,
+            "_name": "༺༒ Maximus༒༻ᵁᴺᵀ"
+          },
+          {
+            "id": 143181758,
+            "_name": "Don t ᵁᴺᵀerstand"
+          },
+          {
+            "id": 175335019,
+            "_name": "marimo zoro"
+          }
+        ]
+      },
+      "green": {
+        "lead": {
+          "id": 170266380,
+          "_name": "Duvyverse ᵁᴺᵀ",
+          "holds": "sanctum",
+          "qual": "east"
+        },
+        "holders": [
+          {
+            "id": 85635348,
+            "_name": "Gonzo",
+            "holds": "abbey",
+            "qual": "green"
+          }
+        ],
+        "flex": [
+          {
+            "id": 85798868,
+            "_name": "Ron Swanson"
+          },
+          {
+            "id": 106824795,
+            "_name": "V4Vixxen ᵁᴺᵀ"
+          },
+          {
+            "id": 145967039,
+            "_name": "Henners"
+          },
+          {
+            "id": 84816196,
+            "_name": "fady 88"
+          },
+          {
+            "id": 108151439,
+            "_name": "TroyIsMetal"
+          }
+        ]
+      },
+      "yellow": {
+        "lead": {
+          "id": 145278963,
+          "_name": "PickYourFateᵁᴺᵀ",
+          "holds": "stables"
+        },
+        "holders": [
+          {
+            "id": 144721429,
+            "_name": "Demo",
+            "holds": "abbey",
+            "qual": "yellow"
+          },
+          {
+            "id": 146327476,
+            "_name": "Zamochᵁᴺᵀ",
+            "holds": "reformation"
+          }
+        ],
+        "flex": [
+          {
+            "id": 145541031,
+            "_name": "Boshtoiseᵁᴺᵀ"
+          },
+          {
+            "id": 142711930,
+            "_name": "Pink Panther"
+          },
+          {
+            "id": 84275144,
+            "_name": "Ꭰøɴ Ꮇaz ᵁᴺᵀ"
+          },
+          {
+            "id": 108282942,
+            "_name": "Ally"
+          },
+          {
+            "id": 144787577,
+            "_name": "LordEBee"
+          }
+        ]
+      }
+    },
+    "subs": [
+      {
+        "id": 146622288,
+        "_name": "Drake Taᵁᴺᵀ"
+      },
+      {
+        "id": 108413948,
+        "_name": "LordDan91"
+      },
+      {
+        "id": 95226545,
+        "_name": "Freedom"
+      },
+      {
+        "id": 144476293,
+        "_name": "Sartorius"
+      },
+      {
+        "id": 84684863,
+        "_name": "Khalid1318"
+      },
+      {
+        "id": 144885995,
+        "_name": "Loricifero"
+      },
+      {
+        "id": 87732523,
+        "_name": "Otacon"
+      },
+      {
+        "id": 144296176,
+        "_name": "Matt ᴾᴿᴹ"
+      },
+      {
+        "id": 84469124,
+        "_name": "Sandro"
+      },
+      {
+        "id": 144186089,
+        "_name": "ThePint"
+      }
+    ]
+  },
+  {
+    "n": 2,
+    "zones": {
+      "purple": {
+        "lead": {
+          "id": 145721485,
+          "_name": "Seafarersaur ᵁᴺᵀ",
+          "holds": "belltower"
+        },
+        "holders": [
+          {
+            "id": 145213178,
+            "_name": "Danthalusᵁᴺᵀ",
+            "holds": "abbey",
+            "qual": "purple"
+          },
+          {
+            "id": 143722426,
+            "_name": "Armel ᵁᴺᵀ",
+            "holds": "mercenary"
+          }
+        ],
+        "flex": [
+          {
+            "id": 145524664,
+            "_name": "Freya ᴮᴬᴹ"
+          },
+          {
+            "id": 144623492,
+            "_name": "ClaudioBuBuᵁᴺᵀ"
+          },
+          {
+            "id": 145540797,
+            "_name": "SharKauᵁᴺᵀ"
+          },
+          {
+            "id": 142805035,
+            "_name": "excite ᵁᴺᵀ"
+          },
+          {
+            "id": 146786268,
+            "_name": "046 ᵁᴺᵀ"
+          }
+        ]
+      },
+      "blue": {
+        "lead": {
+          "id": 84701395,
+          "_name": "F4F1BBLESᵁᴺᵀ",
+          "holds": "sanctum",
+          "qual": "west"
+        },
+        "holders": [
+          {
+            "id": 146065176,
+            "_name": "MSO ᵁᴺᵀ",
+            "holds": "abbey",
+            "qual": "blue"
+          }
+        ],
+        "flex": [
+          {
+            "id": 84357288,
+            "_name": "ox Saleh ox"
+          },
+          {
+            "id": 143640241,
+            "_name": "swirdulys ᵁᴺᵀ"
+          },
+          {
+            "id": 162032076,
+            "_name": "Medlachienteᵁᴺᵀ"
+          },
+          {
+            "id": 142853894,
+            "_name": "Gypseaᵁᴺᵀ"
+          },
+          {
+            "id": 145541218,
+            "_name": "Zeus×͜×"
+          }
+        ]
+      },
+      "green": {
+        "lead": {
+          "id": 84832403,
+          "_name": "『 DaYı 』",
+          "holds": "sanctum",
+          "qual": "east"
+        },
+        "holders": [
+          {
+            "id": 144951541,
+            "_name": "Bloup",
+            "holds": "abbey",
+            "qual": "green"
+          }
+        ],
+        "flex": [
+          {
+            "id": 142788417,
+            "_name": "Don Ani"
+          },
+          {
+            "id": 143066859,
+            "_name": "Lord Yousef ᵁᴺᵀ"
+          },
+          {
+            "id": 143853743,
+            "_name": "GG5009ᵁᴺᵀ"
+          },
+          {
+            "id": 143132842,
+            "_name": "Plarksᵁᴺᵀ"
+          },
+          {
+            "id": 145819747,
+            "_name": "Sniper ᵁᴺᵀ"
+          }
+        ]
+      },
+      "yellow": {
+        "lead": {
+          "id": 86913290,
+          "_name": "Ꭰøɴ Ꭺboood ᴸᴬᴴ",
+          "holds": "stables"
+        },
+        "holders": [
+          {
+            "id": 86634826,
+            "_name": "Falcs",
+            "holds": "abbey",
+            "qual": "yellow"
+          },
+          {
+            "id": 145114999,
+            "_name": "qkhnyksl ᵁᴺᵀ",
+            "holds": "reformation"
+          }
+        ],
+        "flex": [
+          {
+            "id": 142919775,
+            "_name": "oweK ᵁᴺᵀ"
+          },
+          {
+            "id": 143083500,
+            "_name": "DG12"
+          },
+          {
+            "id": 143603094,
+            "_name": "Smowakᵁᴺᵀ"
+          },
+          {
+            "id": 146098215,
+            "_name": "Soumyaᵁᴺᵀ"
+          },
+          {
+            "id": 143214444,
+            "_name": "ursamayorᵁᴺᵀ"
+          }
+        ]
+      }
+    },
+    "subs": [
+      {
+        "id": 108102527,
+        "_name": "FlowerEater"
+      },
+      {
+        "id": 88076576,
+        "_name": "NNBEAR7806"
+      },
+      {
+        "id": 145819476,
+        "_name": "David"
+      },
+      {
+        "id": 143187203,
+        "_name": "Qᵁᴺᵀ"
+      },
+      {
+        "id": null,
+        "_name": "MSC",
+        "unverified": true
+      },
+      {
+        "id": 144099478,
+        "_name": "Bosa3d ᵁᴺᵀ"
+      },
+      {
+        "id": 143509630,
+        "_name": "PersianManᵁᴺᵀ"
+      },
+      {
+        "id": 94506744,
+        "_name": "Txmeem"
+      },
+      {
+        "id": 145770340,
+        "_name": "BSGameToPlayᴾᴿᴹ"
+      },
+      {
+        "id": null,
+        "_name": "GGs",
+        "unverified": true
+      }
+    ]
+  }
+]

@@ -10,7 +10,8 @@
     "build": "npm run check:i18n && astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "check:i18n": "node scripts/check-i18n.mjs"
+    "check:i18n": "node scripts/check-i18n.mjs",
+    "sync:roster": "node scripts/sync-roster.mjs"
   },
   "dependencies": {
     "astro": "^7.2.4"

@@ -207,7 +207,7 @@ export const EVENT = {
        * whole point of writing them in an order. Each key has
        * order.<key>.title / .body.
        */
-      orders: ['objectives', 'secondary', 'nofreelance', 'shrine'],
+      orders: ['objectives', 'secondary', 'nofreelance', 'communicate', 'nowaste', 'shrine'],
 
       /**
        * What a flex player does, in the same priority order. Identical in

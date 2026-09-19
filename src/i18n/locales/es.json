@@ -19,7 +19,7 @@
   "home.card.swordland": "Treinta jugadores, una hora, un mapa. Quién hace qué, y cuándo.",
   "sl.eyebrow": "Alianza contra alianza · cada dos semanas",
   "sl.title": "Swordland Showdown",
-  "sl.thesis": "{n} titulares, {subs} en reserva, {zones} zonas, una sola misión. Todos entran sabiendo dónde están, qué sostienen y a quién siguen. Las asignaciones no se resuelven después del pitido.",
+  "sl.thesis": "{legions} Legiones de {n}, más {subs} en reserva cada una, {zones} zonas, una sola misión. Todos entran sabiendo dónde están, qué sostienen y a quién siguen. Las asignaciones no se resuelven después del pitido.",
   "sl.roster.title": "Quién sale al campo",
   "sl.roster.numlabel": "Combatientes principales por Legión",
   "sl.roster.lede": "Una Legión son {mains} combatientes principales más {subs} suplentes. Solo las {top} alianzas más poderosas pueden inscribirse siquiera, así que una plaza nunca está asegurada solo por haberte apuntado.",
@@ -111,7 +111,7 @@
   "sl.reserve.lede": "Las plazas de titular que nadie reclama se abren a los suplentes unos minutos después del inicio, por orden de llegada.",
   "sl.reserve.head": "Los suplentes no son espectadores.",
   "sl.reserve.body": "Pueden activarte en cualquiera de las cuatro zonas, y nadie te va a explicar nada en ese momento. Conoce el plan entero — cada zona, cada jefe, cada objetivo — no solo aquella en la que esperas caer.",
-  "sl.reserve.do": "Si te llaman: preséntate al jefe de esa zona, di que entras y ejecuta. Conéctate al inicio, esperes plaza o no.",
+  "sl.reserve.do": "Si te llaman: preséntate al jefe de esa zona, di que entras y asume el puesto de aquel a quien sustituyes. Conéctate al inicio, esperes plaza o no.",
   "sl.orders.title": "Órdenes para toda la Legión",
   "sl.orders.lede": "Están por encima de todo lo demás de esta página. Cuando dos tiran en direcciones opuestas, gana la de número más bajo.",
   "sl.orders.tag": "Orden {n}",
@@ -139,5 +139,14 @@
   "sl.map.lede": "Cuatro zonas alrededor de un centro compartido. {shrine} está en el medio y no es de nadie; todo lo demás cae dentro del color de alguien.",
   "sl.map.cap": "Límites de zona y posición de los edificios, según la orden de operaciones de la Legión 1. Las etiquetas del mapa están en inglés; cada edificio aparece nombrado en tu idioma en otra parte de esta página.",
   "sl.map.alt": "Mapa de la arena de Swordland, dividido en cuatro zonas de color alrededor de un Altar de la Espada central.",
-  "sl.map.cellars": "Los {n} Sótanos solo aparecen en {zones}. Las otras dos zonas no tienen ninguno propio: si eres Flex allí y se pide recolectar, pregunta a tu jefe de zona antes de salir de tu color."
+  "sl.map.cellars": "Los {n} Sótanos solo aparecen en {zones}. Las otras dos zonas no tienen ninguno propio: si eres Flex allí y se pide recolectar, pregunta a tu jefe de zona antes de salir de tu color.",
+  "legion.pick": "Legión {n}",
+  "legion.choose": "Elegir Legión",
+  "zone.priority": "Prioridad",
+  "zone.unverified": "No se encontró una cuenta que coincida en el juego: revisa este nombre.",
+  "sl.zones.synced": "Nombres, rangos y caras obtenidos de MightPulse el {date}.",
+  "order.communicate.title": "Di lo que ves",
+  "order.communicate.body": "Movimientos enemigos, ataques en camino, una guarnición vacía, un edificio a punto de cambiar de manos: cántalo. Un jefe de zona solo puede dirigir lo que alguien le cuenta, y eso que das por hecho que vio todo el mundo suele ser justo lo que no avisó nadie.",
+  "order.nowaste.title": "No malgastes marchas",
+  "order.nowaste.body": "Cada marcha enviada a ninguna parte es una marcha que no está defendiendo un edificio cuando cae el golpe. Muévete con un motivo, y el enfriamiento que te ahorres será el que importe después."
 }
