@@ -56,14 +56,22 @@ function waitsFor(p: Player): number | null {
 }
 ---
 <div class="zones">
-  {SL.plan.zones.map((key) => {
+  {SL.plan.zones.map(({ key, undercellars }) => {
     const zone = legion.zones[key];
     if (!zone) return null;
     const commands = [zone.lead, ...zone.holders];
     return (
       <section class="zone" data-zone={key} aria-label={t('zone.name', { zone: t(`zone.${key}.name`) })}>
         <header class="zone__hd">
-          <h3 class="zone__name">{t('zone.name', { zone: t(`zone.${key}.name`) })}</h3>
+          <div>
+            <h3 class="zone__name">{t('zone.name', { zone: t(`zone.${key}.name`) })}</h3>
+            <p class="zone__where">
+              <span class="zone__dir">{t(`zone.${key}.dir`)}</span>
+              {undercellars > 0 && (
+                <span class="zone__cellars">{t('zone.undercellars', { n: num.format(undercellars) })}</span>
+              )}
+            </p>
+          </div>
           <p class="zone__n">{num.format(zoneRoll(zone).length)}</p>
         </header>
 
@@ -106,6 +114,8 @@ function waitsFor(p: Player): number | null {
           </ul>
           <p class="zone__note">{t(`zone.${key}.flex`)}</p>
         </div>
+
+        <p class="zone__motto">{t(`zone.${key}.motto`)}</p>
       </section>
     );
   })}
@@ -130,6 +140,13 @@ function waitsFor(p: Player): number | null {
     display: flex; align-items: baseline; justify-content: space-between;
     gap: 1rem; margin-bottom: 1.25rem;
   }
+  .zone__where {
+    margin: 0.3rem 0 0; display: flex; flex-wrap: wrap; gap: 0.4rem 0.75rem;
+    font-family: var(--display); font-weight: 700; font-size: 0.6875rem;
+    text-transform: uppercase; letter-spacing: 0.12em;
+    color: rgb(237 241 245 / 0.55);
+  }
+  .zone__cellars::before { content: '·'; margin-inline-end: 0.75rem; }
   .zone__name {
     font-size: 1.5rem; font-variation-settings: 'wdth' 84; color: var(--zc);
   }
@@ -183,6 +200,14 @@ function waitsFor(p: Player): number | null {
     margin: 0 0 0.9rem;
     padding-bottom: 0.5rem;
     border-bottom: 1px solid rgb(237 241 245 / 0.18);
+  }
+
+  .zone__motto {
+    margin: 1.1rem 0 0; padding-top: 0.9rem;
+    border-top: 1px solid rgb(237 241 245 / 0.14);
+    font-family: var(--display); font-weight: 900; font-size: 0.8125rem;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--zc);
   }
 
   .zone__note {

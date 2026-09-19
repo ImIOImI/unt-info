@@ -125,5 +125,19 @@
   "order.shrine.body": "To wspólny cel Legionu. Żadna strefa nie porzuca własnych obowiązków, żeby z własnej inicjatywy rzucić się na środek. Dowództwo decyduje, kiedy przenosimy tam nacisk i które strefy ruszają.",
   "sl.chain.title": "Łańcuch dowodzenia",
   "sl.chain.lede": "Jeśli nie wiesz, co robić, rób to, co mówi twój dowódca strefy.",
-  "sl.chain.note": "Znaj swoją strefę. Znaj swój cel. Wzmacniaj drużynę. Słuchaj wywołań."
+  "sl.chain.note": "Znaj swoją strefę. Znaj swój cel. Wzmacniaj drużynę. Słuchaj wywołań.",
+  "zone.purple.dir": "Północ",
+  "zone.blue.dir": "Zachód",
+  "zone.green.dir": "Wschód",
+  "zone.yellow.dir": "Południe",
+  "zone.undercellars": "Podziemia: {n}",
+  "zone.purple.motto": "Dzwonnica stoi. Strefa bezpieczna.",
+  "zone.blue.motto": "Zachód stoi. Trzymamy razem.",
+  "zone.green.motto": "Wschód stoi. Ani piędzi ziemi.",
+  "zone.yellow.motto": "Południe stoi. Stajnie nasze.",
+  "sl.map.title": "Pole bitwy",
+  "sl.map.lede": "Cztery strefy wokół wspólnego środka. {shrine} stoi pośrodku i nie należy do nikogo — cała reszta leży w czyjejś barwie.",
+  "sl.map.cap": "Granice stref i położenie budynków, z rozkazu operacyjnego Legionu 1. Podpisy na samej mapie są po angielsku; każdy budynek jest nazwany w twoim języku w innym miejscu tej strony.",
+  "sl.map.alt": "Mapa areny Swordland, podzielona na cztery kolorowe strefy wokół centralnej Świątyni Miecza.",
+  "sl.map.cellars": "Podziemia ({n}) pojawiają się wyłącznie w strefach: {zones}. Pozostałe dwie nie mają własnych — jeśli jesteś tam Flexem i padnie wezwanie do zbierania, zapytaj dowódcę strefy, zanim wyjdziesz ze swojej barwy."
 }

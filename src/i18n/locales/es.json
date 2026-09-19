@@ -125,5 +125,19 @@
   "order.shrine.body": "Es un objetivo compartido de la Legión. Ninguna zona abandona sus responsabilidades para lanzarse al centro por su cuenta. El mando decide cuándo llevamos la presión allí y qué zonas se mueven.",
   "sl.chain.title": "Cadena de mando",
   "sl.chain.lede": "Si no sabes qué hacer, haz lo que diga tu jefe de zona.",
-  "sl.chain.note": "Conoce tu zona. Conoce tu objetivo. Refuerza a tu equipo. Sigue las llamadas."
+  "sl.chain.note": "Conoce tu zona. Conoce tu objetivo. Refuerza a tu equipo. Sigue las llamadas.",
+  "zone.purple.dir": "Norte",
+  "zone.blue.dir": "Oeste",
+  "zone.green.dir": "Este",
+  "zone.yellow.dir": "Sur",
+  "zone.undercellars": "{n} Sótanos",
+  "zone.purple.motto": "El campanario aguanta. Zona segura.",
+  "zone.blue.motto": "El oeste aguanta. Juntos lo sostenemos.",
+  "zone.green.motto": "El este aguanta. Ni un palmo.",
+  "zone.yellow.motto": "El sur aguanta. Los establos son nuestros.",
+  "sl.map.title": "El campo de batalla",
+  "sl.map.lede": "Cuatro zonas alrededor de un centro compartido. {shrine} está en el medio y no es de nadie; todo lo demás cae dentro del color de alguien.",
+  "sl.map.cap": "Límites de zona y posición de los edificios, según la orden de operaciones de la Legión 1. Las etiquetas del mapa están en inglés; cada edificio aparece nombrado en tu idioma en otra parte de esta página.",
+  "sl.map.alt": "Mapa de la arena de Swordland, dividido en cuatro zonas de color alrededor de un Altar de la Espada central.",
+  "sl.map.cellars": "Los {n} Sótanos solo aparecen en {zones}. Las otras dos zonas no tienen ninguno propio: si eres Flex allí y se pide recolectar, pregunta a tu jefe de zona antes de salir de tu color."
 }

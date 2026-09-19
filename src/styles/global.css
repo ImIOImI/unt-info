@@ -790,6 +790,18 @@ img { max-width: 100%; height: auto; display: block; }
   overflow-wrap: anywhere;
 }
 
+/* The battlefield map. Capped at its natural width so it is never blown up
+   past the resolution it was cropped at, and centred rather than stretched. */
+.map { margin: 0 0 1.5rem; max-width: 27.625rem; }
+.map img {
+  width: 100%; height: auto;
+  border: 1px solid var(--hair);
+}
+.map__cap {
+  margin: 0.75rem 0 0;
+  font-size: 0.8125rem; line-height: 1.5; color: var(--ink-soft);
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after {

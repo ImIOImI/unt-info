@@ -125,5 +125,19 @@
   "order.shrine.body": "Er ist ein gemeinsames Legionsziel. Keine Zone lässt ihre eigenen Aufgaben liegen, um aus eigenem Antrieb in die Mitte zu stürmen. Die Führung entscheidet, wann wir den Druck dorthin verlagern und welche Zonen sich bewegen.",
   "sl.chain.title": "Befehlskette",
   "sl.chain.lede": "Wenn du nicht weißt, was zu tun ist, tu, was deine Zonenführung sagt.",
-  "sl.chain.note": "Kenne deine Zone. Kenne dein Ziel. Verstärke dein Team. Folge den Ansagen."
+  "sl.chain.note": "Kenne deine Zone. Kenne dein Ziel. Verstärke dein Team. Folge den Ansagen.",
+  "zone.purple.dir": "Norden",
+  "zone.blue.dir": "Westen",
+  "zone.green.dir": "Osten",
+  "zone.yellow.dir": "Süden",
+  "zone.undercellars": "{n} Unterkeller",
+  "zone.purple.motto": "Turm steht. Zone sicher.",
+  "zone.blue.motto": "Westen steht. Gemeinsam halten wir.",
+  "zone.green.motto": "Osten steht. Kein Fußbreit.",
+  "zone.yellow.motto": "Süden steht. Die Stallungen sind unser.",
+  "sl.map.title": "Das Schlachtfeld",
+  "sl.map.lede": "Vier Zonen um eine gemeinsame Mitte. {shrine} steht in der Mitte und gehört niemandem — alles andere liegt in irgendeiner Farbe.",
+  "sl.map.cap": "Zonengrenzen und Gebäudepositionen aus der Einsatzordnung von Legion 1. Die Beschriftung auf der Karte ist englisch; jedes Gebäude wird an anderer Stelle auf dieser Seite in deiner Sprache genannt.",
+  "sl.map.alt": "Karte der Swordland-Arena, aufgeteilt in vier farbige Zonen rund um einen zentralen Schwertschrein.",
+  "sl.map.cellars": "Die {n} Unterkeller erscheinen nur in {zones}. Die anderen beiden Zonen haben keine eigenen — wenn du dort Flex bist und der Ruf zum Sammeln kommt, frag deine Zonenführung, bevor du deine Farbe verlässt."
 }

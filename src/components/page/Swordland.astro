@@ -21,6 +21,8 @@ import Countdown from '../Countdown.astro';
 import BuildingTable from '../BuildingTable.astro';
 import Zones from '../Zones.astro';
 import Reserve from '../Reserve.astro';
+import { Image } from 'astro:assets';
+import battlefield from '../../shots/battlefield.png';
 
 interface Props { lang: Lang }
 const { lang } = Astro.props;
@@ -62,8 +64,18 @@ const shrineFirstYou = num.format(shrine.personal.first);
 // The zone leads, in zone order — the chain of command, read straight off
 // the roster so it cannot fall out of step with the cards above it.
 const chain = SL.plan.zones
-  .filter((k) => legion.zones[k])
-  .map((k) => ({ key: k, lead: legion.zones[k].lead }));
+  .filter((z) => legion.zones[z.key])
+  .map((z) => ({ key: z.key, lead: legion.zones[z.key].lead }));
+
+// Which zones the Undercellars actually spawn in. Read off the map rather
+// than assumed even, because they are not: two zones have two each and two
+// have none, and a flex player told to "gather" needs to know which he is.
+const cellarZones = new Intl.ListFormat(lang, { type: 'conjunction' })
+  .format(SL.plan.zones.filter((z) => z.undercellars > 0)
+    .map((z) => t(`zone.${z.key}.name`)));
+const cellarTotal = num.format(
+  SL.plan.zones.reduce((n, z) => n + z.undercellars, 0),
+);
 
 const sharedNames = new Intl.ListFormat(lang, { type: 'conjunction' })
   .format(SL.plan.sharedObjectives.map((b) => t(`bld.${b}`)));
@@ -86,6 +98,19 @@ const sharedNames = new Intl.ListFormat(lang, { type: 'conjunction' })
     <p class="lede">{t('sl.zones.lede', { n: onField, zones: zoneCount })}</p>
     <p class="lede">{t('sl.zones.shared', { shrine: sharedNames })}</p>
     <Zones lang={lang} />
+  </div>
+</section>
+
+<section class="band band--drift">
+  <div class="wrap">
+    <h2 class="h-section">{t('sl.map.title')}</h2>
+    <p class="lede">{t('sl.map.lede', { shrine: sharedNames })}</p>
+    <figure class="map">
+      <Image src={battlefield} alt={t('sl.map.alt')} widths={[442, 884]}
+             sizes="(min-width: 52rem) 442px, 100vw" loading="lazy" />
+      <figcaption class="map__cap">{t('sl.map.cap')}</figcaption>
+    </figure>
+    <p class="waves__warn">{t('sl.map.cellars', { n: cellarTotal, zones: cellarZones })}</p>
   </div>
 </section>
 

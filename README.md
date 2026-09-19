@@ -26,6 +26,7 @@ npm run build    # static output in dist/
 | The order of battle — who is in which zone | `src/content/legions.ts` |
 | Translated sentences | `src/i18n/locales/<lang>.json` |
 | Player portraits | `src/avatars/<avatar>.png` |
+| Screenshots and the battlefield map | `src/shots/` |
 | Page bodies | `src/components/page/` |
 | Design tokens (colour, type, spacing) | `src/styles/global.css` |
 

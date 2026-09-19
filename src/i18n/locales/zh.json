@@ -125,5 +125,19 @@
   "order.shrine.body": "它是整个军团共同的目标。任何一个区都不能丢下自己的职责，自作主张冲中路。什么时候把压力转过去、哪些区动，由指挥决定。",
   "sl.chain.title": "指挥链",
   "sl.chain.lede": "不知道该做什么的时候，听你区长的。",
-  "sl.chain.note": "知道自己的区。知道自己的目标。增援队友。听从指挥。"
+  "sl.chain.note": "知道自己的区。知道自己的目标。增援队友。听从指挥。",
+  "zone.purple.dir": "北",
+  "zone.blue.dir": "西",
+  "zone.green.dir": "东",
+  "zone.yellow.dir": "南",
+  "zone.undercellars": "地窖 {n} 处",
+  "zone.purple.motto": "钟楼稳固，本区安全。",
+  "zone.blue.motto": "西线稳固，齐心守住。",
+  "zone.green.motto": "东线稳固，寸土不让。",
+  "zone.yellow.motto": "南线稳固，马厩是我们的。",
+  "sl.map.title": "战场",
+  "sl.map.lede": "四个区围着一个共同的中心。{shrine}在正中间，不属于任何一个区；其余一切都在某个颜色里面。",
+  "sl.map.cap": "区域划分和建筑位置，出自军团一号作战令。图上的标注是英文；本页其他地方都会用你的语言写出每个建筑的名字。",
+  "sl.map.alt": "Swordland 竞技场地图，围绕中央剑神殿分成四个彩色区域。",
+  "sl.map.cellars": "{n} 处地窖只在{zones}出现。另外两个区没有自己的地窖——如果你在那两个区做机动位，听到采集的号令时，先问区长再离开自己的颜色。"
 }

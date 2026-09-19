@@ -125,5 +125,19 @@
   "order.shrine.body": "It is a shared Legion objective. No zone abandons its own responsibilities to rush the centre on its own initiative. Leadership decides when we shift pressure there, and which zones move.",
   "sl.chain.title": "Chain of command",
   "sl.chain.lede": "If you do not know what to do, do what your zone lead says.",
-  "sl.chain.note": "Know your zone. Know your objective. Reinforce your team. Follow the calls."
+  "sl.chain.note": "Know your zone. Know your objective. Reinforce your team. Follow the calls.",
+  "zone.purple.dir": "North",
+  "zone.blue.dir": "West",
+  "zone.green.dir": "East",
+  "zone.yellow.dir": "South",
+  "zone.undercellars": "{n} Undercellars",
+  "zone.purple.motto": "Tower strong. Zone secure.",
+  "zone.blue.motto": "West strong. Together we hold.",
+  "zone.green.motto": "East strong. No ground given.",
+  "zone.yellow.motto": "South strong. Stables ours.",
+  "sl.map.title": "The battlefield",
+  "sl.map.lede": "Four zones around a shared centre. {shrine} sits in the middle and belongs to nobody — everything else is inside somebody’s colour.",
+  "sl.map.cap": "Zone boundaries and building positions, from the Legion 1 operation order. Labels are in English on the map itself; every building is named in your language elsewhere on this page.",
+  "sl.map.alt": "Map of the Swordland arena, divided into four coloured zones around a central Swordshrine.",
+  "sl.map.cellars": "The {n} Undercellars spawn in {zones} only. The other two zones have none of their own — if you are Flex there and the call goes out to gather, ask your zone lead before you leave your colour."
 }

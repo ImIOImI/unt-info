@@ -173,11 +173,25 @@ export const EVENT = {
        * exactly one. Order here is the order the operation order lists them
        * and the order the page shows them.
        *
-       * Each key needs zone.<key>.name and zone.<key>.flex in the locales,
-       * a colour in the .zone rules in src/styles/global.css, and a
-       * matching entry in LEGIONS[].zones.
+       * `dir` is where the zone sits on the map — the colour is what the
+       * game shows, the compass point is how people actually talk about it.
+       *
+       * `undercellars` is how many spawn inside that zone, read off the
+       * battlefield map. They are NOT spread evenly: two zones have two
+       * each and two have none, which is why the number is per zone rather
+       * than a single total. The page states this and leaves what to do
+       * about it to the zone leads.
+       *
+       * Each key needs zone.<key>.name, .dir, .motto and .flex in the
+       * locales, a colour in the .zone rules in src/styles/global.css, and
+       * a matching entry in LEGIONS[].zones.
        */
-      zones: ['purple', 'blue', 'green', 'yellow'],
+      zones: [
+        { key: 'purple', undercellars: 2 },
+        { key: 'blue', undercellars: 0 },
+        { key: 'green', undercellars: 0 },
+        { key: 'yellow', undercellars: 2 },
+      ],
 
       /**
        * Buildings no zone owns. Leadership calls the rotation onto these as
