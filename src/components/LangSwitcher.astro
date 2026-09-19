@@ -1,0 +1,54 @@
+---
+/**
+ * Plain links inside a disclosure — works with JavaScript off and on any
+ * phone browser, which matters more here than a native select would.
+ */
+import { SUPPORTED, NAMES, localePath, type Lang } from '../i18n/ui';
+interface Props { lang: Lang; path: string }
+const { lang, path } = Astro.props;
+const href = (l: Lang) => localePath(l, path);
+---
+<details class="langs">
+  <summary class="langs__now">{NAMES[lang]}</summary>
+  <ul class="langs__list">
+    {SUPPORTED.map((l) => (
+      <li><a href={href(l)} lang={l} hreflang={l} aria-current={l === lang ? 'true' : undefined}>{NAMES[l]}</a></li>
+    ))}
+  </ul>
+</details>
+
+<style>
+  .langs { position: relative; }
+  .langs__now {
+    cursor: pointer;
+    list-style: none;
+    font-size: 0.875rem;
+    padding: 0.3rem 0.6rem;
+    border: 1px solid var(--hair);
+    background: var(--snow);
+    white-space: nowrap;
+  }
+  .langs__now::-webkit-details-marker { display: none; }
+  .langs__now::after { content: ' ▾'; opacity: 0.5; }
+  .langs__list {
+    position: absolute;
+    inset-inline-end: 0;
+    top: calc(100% + 0.35rem);
+    z-index: 30;
+    margin: 0;
+    padding: 0.35rem;
+    list-style: none;
+    min-width: 9rem;
+    background: var(--snow);
+    border: 1px solid var(--hair);
+    box-shadow: 0 12px 28px rgb(16 21 27 / 0.16);
+  }
+  .langs__list a {
+    display: block;
+    padding: 0.4rem 0.6rem;
+    text-decoration: none;
+    font-size: 0.9375rem;
+  }
+  .langs__list a:hover { background: var(--drift); }
+  .langs__list a[aria-current] { color: var(--ember); font-weight: 700; }
+</style>

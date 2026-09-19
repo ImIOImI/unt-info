@@ -1,0 +1,96 @@
+---
+/**
+ * Live countdown to the next Swordland Showdown.
+ *
+ * The page is a static build, so nothing here is computed at build time — the
+ * server renders the recurring rule, which is always true, and the browser
+ * fills in the clock. That also means every reader sees the date in their own
+ * zone, which matters for a state spread across a lot of countries.
+ */
+import { EVENT, isTodo } from '../content/event';
+import Todo from './Todo.astro';
+import { useTranslations, type Lang } from '../i18n/ui';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const { anchor, everyDays, windowMinutes } = EVENT.swordland.schedule;
+
+const units = ['days', 'hours', 'minutes', 'seconds'] as const;
+---
+{isTodo(anchor) ? <p class="cd cd--todo"><Todo value={anchor} label={t('todo.label')} /></p> : (
+<div
+  class="cd"
+  data-cd
+  data-anchor={anchor}
+  data-every={everyDays}
+  data-window={windowMinutes}
+  data-live={t('cd.live')}
+  data-until={t('cd.until')}
+>
+  <p class="cd__state" data-cd-state>{t('cd.until')}</p>
+
+  <div class="cd__clock" data-cd-clock>
+    {units.map((u) => (
+      <div class="cd__unit">
+        <span class="cd__n" data-cd-n={u}>--</span>
+        <span class="cd__u">{t(`cd.${u}`)}</span>
+      </div>
+    ))}
+  </div>
+
+  <p class="cd__local" data-cd-local></p>
+</div>
+)}
+
+<script>
+  const el = document.querySelector<HTMLElement>('[data-cd]');
+  if (el) {
+    const anchor = Date.parse(el.dataset.anchor!);
+    const every = Number(el.dataset.every) * 86_400_000;
+    const win = Number(el.dataset.window) * 60_000;
+
+    const state = el.querySelector<HTMLElement>('[data-cd-state]')!;
+    const clock = el.querySelector<HTMLElement>('[data-cd-clock]')!;
+    const local = el.querySelector<HTMLElement>('[data-cd-local]')!;
+    const cell = (u: string) => el.querySelector<HTMLElement>(`[data-cd-n="${u}"]`)!;
+
+    const when = new Intl.DateTimeFormat(document.documentElement.lang, {
+      weekday: 'long', day: 'numeric', month: 'long',
+      hour: '2-digit', minute: '2-digit', timeZoneName: 'short',
+    });
+
+    // The occurrence we are counting to: the current one while it is still
+    // running, otherwise the next one on the cycle.
+    function target(now: number): number {
+      if (now < anchor) return anchor;
+      const current = anchor + Math.floor((now - anchor) / every) * every;
+      return now < current + win ? current : current + every;
+    }
+
+    function tick() {
+      const now = Date.now();
+      const at = target(now);
+      const live = now >= at && now < at + win;
+
+      el!.classList.toggle('is-live', live);
+      state.textContent = live ? el!.dataset.live! : el!.dataset.until!;
+      clock.hidden = live;
+      local.textContent = when.format(at);
+
+      if (live) return;
+      let left = Math.max(0, Math.floor((at - now) / 1000));
+      const s = left % 60; left = (left - s) / 60;
+      const m = left % 60; left = (left - m) / 60;
+      const h = left % 24;
+      const d = (left - h) / 24;
+      cell('days').textContent = String(d);
+      cell('hours').textContent = String(h).padStart(2, '0');
+      cell('minutes').textContent = String(m).padStart(2, '0');
+      cell('seconds').textContent = String(s).padStart(2, '0');
+    }
+
+    tick();
+    setInterval(tick, 1000);
+  }
+</script>

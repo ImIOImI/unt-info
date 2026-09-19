@@ -1,0 +1,10 @@
+---
+import Base from '../layouts/Base.astro';
+import Home from '../components/page/Home.astro';
+import { useTranslations } from '../i18n/ui';
+const lang = 'en' as const;
+const t = useTranslations(lang);
+---
+<Base lang={lang} path="" title={`${t('site.title')} — ${t('site.tagline')}`}>
+  <Home lang={lang} />
+</Base>

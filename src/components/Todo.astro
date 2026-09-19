@@ -1,0 +1,12 @@
+---
+/**
+ * Renders a fact from src/content/event.ts. If it is still a TODO(), it shows
+ * as a loud ember badge instead of quietly reading like a real answer.
+ */
+import { isTodo } from '../content/event';
+interface Props { value: string; label: string }
+const { value, label } = Astro.props;
+---
+{isTodo(value)
+  ? <mark class="todo" title={value.slice(6).trim()}>{label}</mark>
+  : <>{value}</>}

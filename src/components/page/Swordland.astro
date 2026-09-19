@@ -1,0 +1,268 @@
+---
+import { EVENT, isTodo } from '../../content/event';
+import { useTranslations, type Lang } from '../../i18n/ui';
+import Todo from '../Todo.astro';
+import BuildingTable from '../BuildingTable.astro';
+import Squads from '../Squads.astro';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const num = new Intl.NumberFormat(lang);
+const SL = EVENT.swordland;
+
+const mains = num.format(SL.legion.mains);
+const subs = num.format(SL.legion.subs);
+const top = num.format(SL.topAlliances);
+const heal = num.format(SL.cooldowns.heal);
+const tp = num.format(SL.cooldowns.teleport);
+const tpFast = num.format(SL.cooldowns.teleportWithStables);
+const attackPay = num.format(SL.payout.attack);
+const defendPay = num.format(SL.payout.defend);
+
+// The 2x claim is derived from the two payouts, so it can never drift away
+// from them the way a hard-coded "twice" would.
+const payRatio = num.format(
+  Math.round((SL.payout.attack / SL.payout.defend) * 10) / 10,
+);
+
+// The opening targets are written once in event.ts; the sentence reads them
+// back in whatever order they are listed, joined the way each language joins
+// a list.
+const targets = new Intl.ListFormat(lang, { type: 'conjunction' })
+  .format(SL.openTargets.map((b) => t(`target.${b}`)));
+
+// The headline argument for the Sanctums is arithmetic, so it is done here
+// rather than asserted in a sentence that could drift from the table.
+const shrine = SL.buildings.find((b) => b.key === 'swordshrine')!;
+const sanctum = SL.buildings.find((b) => b.key === 'sanctum')!;
+const bothSanctums = num.format(sanctum.alliance.perMin * sanctum.count);
+const shrineRate = num.format(shrine.alliance.perMin);
+const shrineFirst = num.format(shrine.alliance.first);
+const shrineFirstYou = num.format(shrine.personal.first);
+---
+<section class="band hero">
+  <div class="wrap">
+    <p class="eyebrow">{t('sl.eyebrow')}</p>
+    <h1 class="hero__title">{t('sl.title')}</h1>
+    <p class="hero__thesis">{t('sl.thesis', { minutes: SL.matchMinutes })}</p>
+    <p class="hero__act"><a class="btn" href="#teams">{t('sl.cta')}</a></p>
+  </div>
+</section>
+
+<section class="band band--iron">
+  <div class="wrap">
+    <h2 class="h-section">{t('sl.roster.title')}</h2>
+    <p class="bignum">{mains}</p>
+    <p class="numlabel">{t('sl.roster.numlabel')}</p>
+    <p class="lede">{t('sl.roster.lede', { mains, subs, top })}</p>
+    <p class="lede">{t('sl.roster.subs', { subs, n: SL.legion.subsAfterMinutes })}</p>
+
+    <div class="caveat">
+      <p class="caveat__head">{t('sl.legions.head', { n: SL.legion.perAlliance })}</p>
+      <p class="caveat__body">{t('sl.legions.body')}</p>
+      <p class="caveat__do">{t('sl.legions.do')}</p>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="teams">
+  <div class="wrap">
+    <h2 class="h-section">{t('sl.teams.title')}</h2>
+    <p class="lede">{t('sl.teams.lede', { mains })}</p>
+
+    {SL.teams.map((team, i) => (
+      <div class="rule">
+        <p class="rule__tag">{t('sl.teams.tag', { n: i + 1 })}</p>
+        <div class="rule__body">
+          <h3 class="rule__title">{t(`team.${team.key}.name`)}</h3>
+          <p class="mix__total">{num.format(team.size)}</p>
+          <p class="numlabel">{t('sl.teams.sizelabel')}</p>
+          <p class="step__body">{t(`team.${team.key}.duty`, {
+            attackPay, defendPay, payRatio, heal, tpFast,
+          })}</p>
+          <p class="mix__note">{t(`team.${team.key}.note`)}</p>
+        </div>
+      </div>
+    ))}
+
+    <p class="picks__note">{t('sl.teams.note', { mains })}</p>
+  </div>
+</section>
+
+<section class="band band--iron">
+  <div class="wrap">
+    <h2 class="h-section">{t('squads.title')}</h2>
+    <p class="lede">{t('squads.lede')}</p>
+    <Squads lang={lang} />
+    <p class="picks__note">{t('squads.note')}</p>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <h2 class="h-section">{t('sl.rot.title')}</h2>
+    <p class="lede">{t('sl.rot.body', { heal })}</p>
+    <div class="caveat">
+      <p class="caveat__head">{t('sl.rot.head', { heal })}</p>
+      <p class="caveat__body">{t('sl.rot.why')}</p>
+      <p class="caveat__do">{t('sl.rot.do')}</p>
+    </div>
+  </div>
+</section>
+
+<section class="band band--drift">
+  <div class="wrap">
+    <h2 class="h-section">{t('sl.lock.title', { n: SL.opening.lockMinutes })}</h2>
+    <p class="lede">{t('sl.lock.lede', { n: SL.opening.lockMinutes })}</p>
+
+    <div class="caveat">
+      <p class="caveat__head">{t('sl.lock.head', { m: SL.opening.reinforceAttackers })}</p>
+      <p class="caveat__body">{t('sl.lock.body', { m: SL.opening.reinforceAttackers })}</p>
+      <p class="caveat__do">{t('sl.lock.do', { m: SL.opening.reinforceAttackers })}</p>
+    </div>
+
+    <div class="caveat">
+      <p class="caveat__head">{t('sl.lock.targets.head')}</p>
+      <p class="caveat__body">{t('sl.lock.targets.body')}</p>
+    </div>
+  </div>
+</section>
+
+<section class="band band--iron">
+  <div class="wrap">
+    <h2 class="h-section">{t('sl.go.title')}</h2>
+    <p class="lede">{t('sl.go.lede')}</p>
+    <ol class="steps">
+      {SL.openingSequence.map((key, i) => (
+        <li class="step">
+          <p class="step__when">{num.format(i + 1)}</p>
+          <div>
+            <h3 class="step__title">{t(`go.${key}.title`, { n: SL.backupRallies })}</h3>
+            <p class="step__body">{t(`go.${key}.body`, { n: SL.backupRallies })}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+
+    <div class="caveat">
+      <p class="caveat__head">{t('sl.go.head')}</p>
+      <p class="caveat__body">{t('sl.go.body')}</p>
+      <p class="caveat__do">{t('sl.go.do')}</p>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <h2 class="h-section">{t('sl.phases.title')}</h2>
+    <p class="lede">{t('sl.phases.lede', { minutes: SL.matchMinutes })}</p>
+    <ol class="steps">
+      {SL.phases.map((phase) => (
+        <li class:list={['step', phase.at === 0 && 'step--launch']}>
+          <p class="step__when">
+            {isTodo(phase.at)
+              ? <Todo value={phase.at} label={t('todo.label')} />
+              : phase.at === 0
+                ? t('sl.phases.start')
+                : t('sl.phases.at', { n: phase.at })}
+          </p>
+          <div>
+            <h3 class="step__title">{t(`phase.${phase.key}.title`)}</h3>
+            <p class="step__body">{t(`phase.${phase.key}.body`, {
+              tp, tpFast, targets, n: SL.shrinePushFromEnd,
+              waves: SL.undercellarWaves,
+            })}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+    <p class="waves__warn">{t('sl.phases.warn')}</p>
+  </div>
+</section>
+
+<section class="band band--iron">
+  <div class="wrap">
+    <h2 class="h-section">{t('sl.pay.title')}</h2>
+    <p class="lede">{t('sl.pay.lede')}</p>
+    <BuildingTable lang={lang} />
+    <p class="mix__note">{t('sl.pay.note')}</p>
+
+    <div class="caveat">
+      <p class="caveat__head">{t('sl.pay.head', { bothSanctums, shrineRate })}</p>
+      <p class="caveat__body">{t('sl.pay.body', { bothSanctums, shrineRate })}</p>
+      <p class="caveat__do">{t('sl.pay.do')}</p>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <h2 class="h-section">{t('sl.first.title')}</h2>
+    <p class="lede">{t('sl.first.lede')}</p>
+
+    <div class="caveat">
+      <p class="caveat__head">{t('sl.first.head')}</p>
+      <p class="caveat__body">{t('sl.first.body', { pct: SL.stealPercent })}</p>
+      <p class="caveat__do">{t('sl.first.do')}</p>
+    </div>
+
+    <div class="faq">
+      <p class="faq__label">{t('sl.first.egtitle')}</p>
+      <div class="faq__item">
+        <p class="faq__q">{t('sl.first.egq')}</p>
+        <p class="faq__a">{t('sl.first.ega', {
+          shrineFirst, shrineFirstYou, shrineRate, n: SL.shrinePushFromEnd,
+        })}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band band--drift">
+  <div class="wrap">
+    <h2 class="h-section">{t('sl.cycle.title')}</h2>
+    <p class="lede">{t('sl.cycle.lede')}</p>
+    <ol class="steps">
+      {SL.targetCycle.map((key, i) => (
+        <li class="step">
+          <p class="step__when">{num.format(i + 1)}</p>
+          <div>
+            <h3 class="step__title">{t(`cyc.${key}.title`, { n: SL.targetRallyMinutes })}</h3>
+            <p class="step__body">{t(`cyc.${key}.body`, {
+              n: SL.targetRallyMinutes, pct: SL.stealPercent, mark: SL.targetMark,
+            })}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+    <p class="waves__warn">{t('sl.cycle.repeat')}</p>
+
+    <div class="caveat">
+      <p class="caveat__head">{t('sl.cycle.head')}</p>
+      <p class="caveat__body">{t('sl.cycle.body')}</p>
+      <p class="caveat__do">{t('sl.cycle.do')}</p>
+    </div>
+  </div>
+</section>
+
+<section class="band band--iron">
+  <div class="wrap">
+    <h2 class="h-section">{t('sl.shrine.title')}</h2>
+
+    <div class="caveat">
+      <p class="caveat__head">{t('sl.shrine.head', { n: SL.shrinePushFromEnd })}</p>
+      <p class="caveat__body">{t('sl.shrine.body', { pct: SL.stealPercent })}</p>
+      <p class="caveat__do">{t('sl.shrine.do', { n: SL.shrinePushFromEnd })}</p>
+    </div>
+
+    <div class="faq">
+      <p class="faq__label">{t('sl.points.title')}</p>
+      <div class="faq__item">
+        <p class="faq__q">{t('sl.points.q')}</p>
+        <p class="faq__a">{t('sl.points.a', { attackPay, defendPay, payRatio })}</p>
+      </div>
+    </div>
+  </div>
+</section>

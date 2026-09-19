@@ -1,0 +1,110 @@
+---
+/**
+ * What every building on the map pays. Reference data, so it is a real table:
+ * scannable down a column, and it scrolls inside its own box on a phone
+ * rather than pushing the page sideways.
+ *
+ * Numbers come from EVENT.swordland.buildings and are formatted per locale,
+ * so 1200 reads as 1.200 in German and 1,200 in English.
+ */
+import { EVENT } from '../content/event';
+import { useTranslations, type Lang } from '../i18n/ui';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const num = new Intl.NumberFormat(lang);
+const rows = EVENT.swordland.buildings;
+const phaseTwoAt = EVENT.swordland.phases.find((p) => p.key === 'two')?.at;
+---
+<div class="btable__scroll">
+  <table class="btable">
+    <thead>
+      <tr>
+        <th scope="col">{t('bt.building')}</th>
+        <th scope="col" class="btable__num">{t('bt.alliance')}</th>
+        <th scope="col" class="btable__num">{t('bt.personal')}</th>
+        <th scope="col">{t('bt.bonus')}</th>
+      </tr>
+      <tr class="btable__sub">
+        <td></td>
+        <td class="btable__num">{t('bt.firstmin')}</td>
+        <td class="btable__num">{t('bt.firstmin')}</td>
+        <td></td>
+      </tr>
+    </thead>
+    <tbody>
+      {rows.map((b) => (
+        <tr>
+          <th scope="row">
+            <span class="btable__name">{t(`bld.${b.key}`)}</span>
+            {b.count > 1 && <>{' '}<span class="btable__count">×{num.format(b.count)}</span></>}
+            {b.opensAtPhase === 2 && typeof phaseTwoAt === 'number' && (
+              <>{' '}<span class="btable__late">{t('bt.opensat', { n: phaseTwoAt })}</span></>
+            )}
+          </th>
+          <td class="btable__num">
+            <span class="btable__first">{num.format(b.alliance.first)}</span>
+            <span class="btable__rate">+{num.format(b.alliance.perMin)}</span>
+          </td>
+          <td class="btable__num">
+            <span class="btable__first">{num.format(b.personal.first)}</span>
+            <span class="btable__rate">+{num.format(b.personal.perMin)}</span>
+          </td>
+          <td class="btable__bonus">{b.bonus ? t(`bonus.${b.bonus}`) : <span class="btable__none">—</span>}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
+<style>
+  .btable__scroll { overflow-x: auto; margin-top: 2rem; }
+  .btable {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 34rem;
+    font-size: 0.9375rem;
+  }
+  .btable th, .btable td {
+    text-align: start;
+    padding: 0.7rem 0.9rem;
+    border-bottom: 1px solid var(--hair);
+    vertical-align: baseline;
+  }
+  .btable thead th {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ember);
+    border-bottom-width: 2px;
+  }
+  /* The units line under the two number columns, not a row of its own data. */
+  .btable__sub td {
+    padding-top: 0;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--hair);
+    font-size: 0.7rem;
+    color: var(--ink-soft);
+    letter-spacing: 0.04em;
+  }
+  .btable__num { text-align: end; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .btable tbody th { font-weight: 400; }
+  .btable__name { font-family: var(--display); font-weight: 700; }
+  .btable__count { color: var(--ink-soft); }
+  .btable__late {
+    display: block;
+    margin-top: 0.2rem;
+    font-size: 0.7rem;
+    color: var(--ink-soft);
+    letter-spacing: 0.04em;
+  }
+  .btable__first { font-weight: 700; }
+  .btable__rate { color: var(--ink-soft); margin-inline-start: 0.5rem; }
+  .btable__bonus { color: var(--ink-soft); }
+  .btable__none { color: var(--hair); }
+  .btable tbody tr:last-child th, .btable tbody tr:last-child td { border-bottom: none; }
+</style>

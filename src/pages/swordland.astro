@@ -1,0 +1,10 @@
+---
+import Base from '../layouts/Base.astro';
+import Swordland from '../components/page/Swordland.astro';
+import { useTranslations } from '../i18n/ui';
+const lang = 'en' as const;
+const t = useTranslations(lang);
+---
+<Base lang={lang} path="swordland" title={`${t('sl.title')} — ${t('site.title')}`}>
+  <Swordland lang={lang} />
+</Base>

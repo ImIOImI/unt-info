@@ -1,0 +1,25 @@
+---
+import { EVENT } from '../../content/event';
+import { useTranslations, localePath, type Lang } from '../../i18n/ui';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+<section class="band hero">
+  <div class="wrap">
+    <p class="eyebrow">{t('site.tagline')}</p>
+    <h1 class="hero__title">{t('home.title')}</h1>
+    <p class="hero__thesis">{t('home.lede', { alliance: EVENT.alliance.name, kingdom: EVENT.alliance.kingdom })}</p>
+    <div class="cards">
+      <a class="card" href={localePath(lang, 'swordland')}>
+        <h2 class="card__title">{t('nav.swordland')}</h2>
+        <p class="card__body">{t('home.card.swordland')}</p>
+      </a>
+      <div class="card card--soon">
+        <h2 class="card__title">{t('home.card.soonMark')}</h2>
+        <p class="card__body">{t('home.card.more')}</p>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,65 @@
+---
+import { NAMES, SCRIPT_FONT, asset, isRtl, useTranslations, localePath, type Lang } from '../i18n/ui';
+import { EVENT } from '../content/event';
+import LangSwitcher from '../components/LangSwitcher.astro';
+import Todo from '../components/Todo.astro';
+import '../styles/global.css';
+
+interface Props { lang: Lang; title: string; path: string }
+const { lang, title, path } = Astro.props;
+const t = useTranslations(lang);
+
+// Only pull a CJK or Arabic face on the pages that actually need one — those
+// files are large and this audience is on phones.
+const families = [
+  'Archivo:wdth,wght@62..125,400..900',
+  'Noto+Sans:wght@400;700',
+  SCRIPT_FONT[lang],
+].filter(Boolean);
+const fontHref = `https://fonts.googleapis.com/css2?${families.map((f) => `family=${f}`).join('&')}&display=swap`;
+const scriptFace = SCRIPT_FONT[lang]?.split(':')[0].replaceAll('+', ' ');
+
+const kingdom = EVENT.alliance.kingdom;
+---
+<html
+  lang={lang}
+  dir={isRtl(lang) ? 'rtl' : 'ltr'}
+  style={scriptFace ? `--script-face:'${scriptFace}'` : undefined}
+>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <link rel="icon" href={asset('favicon.svg')} type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href={fontHref} />
+  </head>
+  <body>
+    <header class="masthead">
+      <div class="wrap masthead__in">
+        <a class="mark" href={localePath(lang, '')}>UN<span>T</span></a>
+        <nav class="masthead__nav" aria-label={t('site.title')}>
+          <a class="navlink" href={localePath(lang, '')}
+             aria-current={path === '' ? 'page' : undefined}>{t('nav.home')}</a>
+          <a class="navlink" href={localePath(lang, 'swordland')}
+             aria-current={path === 'swordland' ? 'page' : undefined}>{t('nav.swordland')}</a>
+          <LangSwitcher lang={lang} path={path} />
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="band band--iron foot">
+      <div class="wrap">
+        <p class="foot__mark">UNT</p>
+        <p class="foot__name"><Todo value={EVENT.alliance.name} label={t('todo.label')} /></p>
+        <p>{t('footer.kingdom', { kingdom })} · {NAMES[lang]}</p>
+        <p>{t('footer.built')}</p>
+      </div>
+    </footer>
+  </body>
+</html>
