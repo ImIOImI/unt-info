@@ -55,12 +55,20 @@ export const EVENT = {
     matchMinutes: 60,
 
     /**
-     * A known occurrence, in UTC, for the countdown on the page. Every other
-     * one is this plus a multiple of `everyDays`.
+     * A known occurrence, in UTC. Every other one is this plus a multiple
+     * of `everyDays`, and the countdown works forward from it forever.
+     *
+     * Confirmed for 976: every Sunday at 19:00 UTC. Public guides describe
+     * a fortnightly cycle, which is what this file said until leadership
+     * corrected it — do not "fix" it back from a guide.
+     *
+     * The rule is the weekday, not this date. If the schedule ever slips,
+     * move the anchor to the next correct Sunday and the countdown
+     * re-aligns from there; nothing else needs touching.
      */
     schedule: {
-      anchor: TODO('What date and time (UTC) is the next Swordland Showdown on 976?'),
-      everyDays: 14,
+      anchor: '2026-09-20T19:00:00Z',
+      everyDays: 7,
       /** How long the countdown reads "running now" before it rolls over. */
       windowMinutes: 60,
     },
