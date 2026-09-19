@@ -102,9 +102,11 @@ The script rewrites `roster.json`, downloads any portrait it does not have,
 and refreshes every `_name`. It costs one call for the alliance plus one per
 player currently outside it, so it stays well inside the 60/min limit.
 
-Players on a stock game icon deliberately keep a lettered tile — five
-identical default portraits are worse than five distinct letters when the
-tile exists to tell people apart.
+Portraits come from the game, uploads and stock hero art alike. Two players
+who picked the same hero look alike here because they look alike in game,
+and the tile exists to be recognised rather than to be unique. Only the
+"never chose a picture" silhouette falls back to a lettered tile — rendering
+the game's own placeholder reads as a broken image, not as faithfulness.
 
 ### 4. Verify before shipping
 

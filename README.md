@@ -77,8 +77,12 @@ Headcounts are never written down. The page counts the team sheet, so moving
 someone updates every number that mentions them. The zone priority chain is
 read off the holders in card order for the same reason.
 
-Players on a stock game icon keep a lettered tile — five identical default
-portraits are worse than five distinct letters at the one job the tile has.
+Portraits are whatever the game shows, uploads and stock hero art alike —
+two players who picked the same hero really do look alike in game, and the
+page's job is to be recognisable rather than tidy. The exception is the
+silhouette shown for somebody who never chose a picture: that renders as a
+lettered tile instead, because the game's own "no avatar" placeholder just
+reads as a broken image.
 
 ## Languages
 

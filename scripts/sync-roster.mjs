@@ -68,6 +68,7 @@ const entries = [...players(legions)];
 const roster = {};
 const elsewhere = [];   // plays for us, currently in another alliance
 const nameOnly = [];    // no account found — the order's spelling is all we have
+const noPicture = [];   // account found, but they never set an avatar
 const wanted = [];
 
 for (const e of entries) {
@@ -96,9 +97,20 @@ for (const e of entries) {
   e._name = name;
   delete e.unverified;
 
-  const custom = avatarUrl?.startsWith('/cdn/');
-  roster[e.id] = { name, rank, alliance, avatar: custom ? `${e.id}.png` : null };
-  if (custom) wanted.push({ id: e.id, url: avatarUrl });
+  // Take whatever the game shows — an upload or one of the stock hero
+  // portraits. The page exists to look like the game, so a player scanning
+  // for a face recognises it, and two people who picked the same hero
+  // genuinely do look alike in game.
+  //
+  // The one exception is lord_*_pic_*, the silhouette shown for somebody
+  // who never chose a picture. Rendering the game's own "no avatar" placeholder
+  // is not more faithful than rendering ours, it just looks like the image
+  // failed to load — and a lettered tile at least tells two of them apart.
+  const isDefault = /\/assets\/icons\/lord_[a-z]+_pic_/.test(avatarUrl ?? '');
+  const hasFace = Boolean(avatarUrl) && !isDefault;
+  roster[e.id] = { name, rank, alliance, avatar: hasFace ? `${e.id}.png` : null };
+  if (hasFace) wanted.push({ id: e.id, url: avatarUrl });
+  else if (isDefault) noPicture.push(name);
 }
 
 await fs.mkdir(AVATARS, { recursive: true });
@@ -125,9 +137,10 @@ await fs.writeFile(ROSTER, JSON.stringify({
   players: roster,
 }, null, 2) + '\n');
 
-const stock = Object.values(roster).filter((p) => !p.avatar).length;
 console.log(`placed ${entries.length} · resolved ${Object.keys(roster).length}`);
-console.log(`avatars: ${got} downloaded, ${skipped} already present, ${stock} on a stock icon`);
+console.log(`avatars: ${got} downloaded, ${skipped} already present, ` +
+  `${noPicture.length} never set one (lettered tile)`);
+if (noPicture.length) for (const n of noPicture) console.log(`  no picture: ${n}`);
 
 // Informational, not a problem: people swap alliances between events.
 if (elsewhere.length) {
