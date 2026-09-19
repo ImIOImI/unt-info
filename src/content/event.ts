@@ -170,8 +170,18 @@ export const EVENT = {
     plan: {
       /**
        * The map is cut into four colour zones and every starter belongs to
-       * exactly one. Order here is the order the operation order lists them
-       * and the order the page shows them.
+       * exactly one.
+       *
+       * Order here is the order the page shows them, and it is NOT the
+       * order the operation orders list (Purple, Blue, Green, Yellow). The
+       * cards sit in a two-column grid, and a grid row is as tall as its
+       * tallest card: Purple and Yellow each hold three buildings, Blue and
+       * Green two, so pairing them the document's way left a band of dead
+       * space under whichever card was shorter.
+       *
+       * Pairing like with like also turns each row into opposing compass
+       * points — north beside south, then west beside east — which is a
+       * better mnemonic than the document order was.
        *
        * `dir` is where the zone sits on the map — the colour is what the
        * game shows, the compass point is how people actually talk about it.
@@ -187,10 +197,10 @@ export const EVENT = {
        * a matching entry in LEGIONS[].zones.
        */
       zones: [
-        { key: 'purple', undercellars: 2 },
-        { key: 'blue', undercellars: 0 },
-        { key: 'green', undercellars: 0 },
-        { key: 'yellow', undercellars: 2 },
+        { key: 'purple', undercellars: 2 },  // north · 3 buildings
+        { key: 'yellow', undercellars: 2 },  // south · 3 buildings
+        { key: 'blue', undercellars: 0 },    // west  · 2 buildings
+        { key: 'green', undercellars: 0 },   // east  · 2 buildings
       ],
 
       /**
