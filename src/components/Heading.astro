@@ -1,0 +1,29 @@
+---
+/**
+ * A heading that links to itself, so any section can be pasted into chat.
+ *
+ * The `id` is passed in rather than slugged from the heading text, and that
+ * is the whole point. This page exists in nine languages; slugging the text
+ * would give the same section a different anchor in each one, so a link an
+ * English speaker pastes into alliance chat would land nowhere for the
+ * people reading it in Turkish or Arabic. A fixed id survives translation.
+ *
+ * The heading text is the link text, which is also its accessible name —
+ * exactly what a screen reader should announce. The hash mark is
+ * decoration and hidden from the accessibility tree.
+ */
+interface Props {
+  /** Stable, language-neutral. Keep it in sync with nothing but itself. */
+  id: string;
+  level?: 2 | 3;
+  class?: string;
+}
+const { id, level = 2, class: cls } = Astro.props;
+const Tag = `h${level}` as const;
+---
+<Tag id={id} class:list={['hlink__host', cls]}>
+  <a class="hlink" href={`#${id}`}>
+    <slot />
+    <span class="hlink__mark" aria-hidden="true">#</span>
+  </a>
+</Tag>

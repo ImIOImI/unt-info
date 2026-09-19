@@ -841,6 +841,33 @@ img { max-width: 100%; height: auto; display: block; }
 }
 .band:not(.band--iron) .legionhd { border-bottom-color: var(--ember); }
 
+/* Self-linking headings. The whole heading is the target, so it works on a
+   phone where there is no hover to reveal anything; the mark is a hint for
+   people who have a pointer, not the only way in. */
+.hlink__host { scroll-margin-top: 4.5rem; }
+.hlink {
+  color: inherit;
+  text-decoration: none;
+  display: inline;
+}
+.hlink__mark {
+  margin-inline-start: 0.35em;
+  opacity: 0.22;
+  font-weight: 700;
+  transition: opacity 120ms ease;
+}
+.hlink:hover .hlink__mark,
+.hlink:focus-visible .hlink__mark { opacity: 0.85; }
+.hlink:focus-visible {
+  outline: 2px solid var(--ember);
+  outline-offset: 4px;
+}
+.band--iron .hlink:focus-visible { outline-color: var(--ember-lift); }
+/* The heading just linked to, so a reader landing from a pasted link can
+   see which one answered. */
+.hlink__host:target .hlink__mark { opacity: 1; color: var(--ember); }
+.band--iron .hlink__host:target .hlink__mark { color: var(--ember-lift); }
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after {

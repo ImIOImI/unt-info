@@ -20,6 +20,7 @@ import { Image } from 'astro:assets';
 import { EVENT } from '../content/event';
 import { initial, priority, zoneRoll, type Legion, type Player } from '../content/legions';
 import { useTranslations, type Lang } from '../i18n/ui';
+import Heading from './Heading.astro';
 
 interface Props { lang: Lang; legion: Legion }
 const { lang, legion } = Astro.props;
@@ -64,7 +65,9 @@ function waitsFor(p: Player): number | null {
       <section class="zone" data-zone={key} aria-label={t('zone.name', { zone: t(`zone.${key}.name`) })}>
         <header class="zone__hd">
           <div>
-            <h3 class="zone__name">{t('zone.name', { zone: t(`zone.${key}.name`) })}</h3>
+            <Heading id={`l${legion.n}-${key}`} level={3} class="zone__name">
+              {t('zone.name', { zone: t(`zone.${key}.name`) })}
+            </Heading>
             <p class="zone__where">
               <span class="zone__dir">{t(`zone.${key}.dir`)}</span>
               {undercellars > 0 && (

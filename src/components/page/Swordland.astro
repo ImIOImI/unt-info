@@ -21,6 +21,7 @@ import Countdown from '../Countdown.astro';
 import BuildingTable from '../BuildingTable.astro';
 import Zones from '../Zones.astro';
 import Reserve from '../Reserve.astro';
+import Heading from '../Heading.astro';
 import { Image } from 'astro:assets';
 import battlefield from '../../shots/battlefield.png';
 
@@ -100,9 +101,9 @@ const sharedNames = new Intl.ListFormat(lang, { type: 'conjunction' })
   </div>
 </section>
 
-<section class="band band--iron" id="zones">
+<section class="band band--iron">
   <div class="wrap">
-    <h2 class="h-section">{t('sl.zones.title')}</h2>
+    <Heading id="zones" class="h-section">{t('sl.zones.title')}</Heading>
     <p class="lede">{t('sl.zones.lede', { n: onField, zones: zoneCount })}</p>
     <p class="lede">{t('sl.zones.shared', { shrine: sharedNames })}</p>
 
@@ -126,7 +127,7 @@ const sharedNames = new Intl.ListFormat(lang, { type: 'conjunction' })
 
 <section class="band band--drift">
   <div class="wrap">
-    <h2 class="h-section">{t('sl.map.title')}</h2>
+    <Heading id="map" class="h-section">{t('sl.map.title')}</Heading>
     <p class="lede">{t('sl.map.lede', { shrine: sharedNames })}</p>
     <figure class="map">
       <Image src={battlefield} alt={t('sl.map.alt')} widths={[442, 884]}
@@ -139,14 +140,14 @@ const sharedNames = new Intl.ListFormat(lang, { type: 'conjunction' })
 
 <section class="band">
   <div class="wrap">
-    <h2 class="h-section">{t('sl.flex.title')}</h2>
+    <Heading id="flex" class="h-section">{t('sl.flex.title')}</Heading>
     <p class="lede">{t('sl.flex.lede')}</p>
     <ol class="steps">
       {SL.plan.flexDuties.map((key, i) => (
         <li class="step">
           <p class="step__when">{num.format(i + 1)}</p>
           <div>
-            <h3 class="step__title">{t(`flex.${key}.title`)}</h3>
+            <Heading id={`flex-${key}`} level={3} class="step__title">{t(`flex.${key}.title`)}</Heading>
             <p class="step__body">{t(`flex.${key}.body`)}</p>
           </div>
         </li>
@@ -158,7 +159,7 @@ const sharedNames = new Intl.ListFormat(lang, { type: 'conjunction' })
 
 <section class="band band--drift">
   <div class="wrap">
-    <h2 class="h-section">{t('sl.reserve.title')}</h2>
+    <Heading id="reserve" class="h-section">{t('sl.reserve.title')}</Heading>
     <p class="bignum">{reserve}</p>
     <p class="numlabel">{t('sl.reserve.numlabel')}</p>
     <p class="lede">{t('sl.reserve.lede')}</p>
@@ -187,13 +188,13 @@ const sharedNames = new Intl.ListFormat(lang, { type: 'conjunction' })
 
 <section class="band">
   <div class="wrap">
-    <h2 class="h-section">{t('sl.orders.title')}</h2>
+    <Heading id="orders" class="h-section">{t('sl.orders.title')}</Heading>
     <p class="lede">{t('sl.orders.lede')}</p>
     {SL.plan.orders.map((key, i) => (
       <div class="rule">
         <p class="rule__tag">{t('sl.orders.tag', { n: num.format(i + 1) })}</p>
         <div class="rule__body">
-          <h3 class="rule__title">{t(`order.${key}.title`, { shrine: sharedNames })}</h3>
+          <Heading id={`order-${key}`} level={3} class="rule__title">{t(`order.${key}.title`, { shrine: sharedNames })}</Heading>
           <p class="step__body">{t(`order.${key}.body`, { shrine: sharedNames })}</p>
         </div>
       </div>
@@ -203,7 +204,7 @@ const sharedNames = new Intl.ListFormat(lang, { type: 'conjunction' })
 
 <section class="band band--iron">
   <div class="wrap">
-    <h2 class="h-section">{t('sl.chain.title')}</h2>
+    <Heading id="chain" class="h-section">{t('sl.chain.title')}</Heading>
     <p class="lede">{t('sl.chain.lede')}</p>
     <div class="legionpick" role="group" aria-label={t('legion.choose')} data-legionpick>
       {LEGIONS.map((l, i) => (
@@ -234,7 +235,7 @@ const sharedNames = new Intl.ListFormat(lang, { type: 'conjunction' })
     reason the plan above is shaped the way it is. */}
 <section class="band">
   <div class="wrap">
-    <h2 class="h-section">{t('sl.roster.title')}</h2>
+    <Heading id="roster" class="h-section">{t('sl.roster.title')}</Heading>
     <p class="bignum">{mains}</p>
     <p class="numlabel">{t('sl.roster.numlabel')}</p>
     <p class="lede">{t('sl.roster.lede', { mains, subs, top })}</p>
@@ -250,14 +251,14 @@ const sharedNames = new Intl.ListFormat(lang, { type: 'conjunction' })
 
 <section class="band band--drift">
   <div class="wrap">
-    <h2 class="h-section">{t('sl.lock.title', { n: SL.opening.lockMinutes })}</h2>
+    <Heading id="lock" class="h-section">{t('sl.lock.title', { n: SL.opening.lockMinutes })}</Heading>
     <p class="lede">{t('sl.lock.lede', { n: SL.opening.lockMinutes })}</p>
   </div>
 </section>
 
 <section class="band">
   <div class="wrap">
-    <h2 class="h-section">{t('sl.phases.title')}</h2>
+    <Heading id="phases" class="h-section">{t('sl.phases.title')}</Heading>
     <p class="lede">{t('sl.phases.lede', { minutes: SL.matchMinutes })}</p>
     <ol class="steps">
       {SL.phases.map((phase) => (
@@ -270,7 +271,7 @@ const sharedNames = new Intl.ListFormat(lang, { type: 'conjunction' })
                 : t('sl.phases.at', { n: phase.at })}
           </p>
           <div>
-            <h3 class="step__title">{t(`phase.${phase.key}.title`)}</h3>
+            <Heading id={`phase-${phase.key}`} level={3} class="step__title">{t(`phase.${phase.key}.title`)}</Heading>
             <p class="step__body">{t(`phase.${phase.key}.body`, {
               tp, tpFast, waves: SL.undercellarWaves,
             })}</p>
@@ -284,7 +285,7 @@ const sharedNames = new Intl.ListFormat(lang, { type: 'conjunction' })
 
 <section class="band band--iron">
   <div class="wrap">
-    <h2 class="h-section">{t('sl.pay.title')}</h2>
+    <Heading id="pay" class="h-section">{t('sl.pay.title')}</Heading>
     <p class="lede">{t('sl.pay.lede')}</p>
     <BuildingTable lang={lang} />
     <p class="mix__note">{t('sl.pay.note')}</p>
@@ -298,7 +299,7 @@ const sharedNames = new Intl.ListFormat(lang, { type: 'conjunction' })
 
 <section class="band">
   <div class="wrap">
-    <h2 class="h-section">{t('sl.first.title')}</h2>
+    <Heading id="first" class="h-section">{t('sl.first.title')}</Heading>
     <p class="lede">{t('sl.first.lede')}</p>
 
     <div class="caveat">
@@ -344,8 +345,30 @@ const sharedNames = new Intl.ListFormat(lang, { type: 'conjunction' })
       for (const b of buttons) b.setAttribute('aria-pressed', String(b.dataset.pick === n));
     };
 
+    // A pasted link to #l2-purple has to bring Legion 2 with it, or it
+    // scrolls to a heading this picker is currently hiding and the reader
+    // lands on the wrong roster with no clue why.
+    const legionForHash = () => {
+      const id = decodeURIComponent(location.hash.slice(1));
+      if (!id) return null;
+      return document.getElementById(id)?.closest<HTMLElement>('[data-legion]')
+        ?.dataset.legion ?? null;
+    };
+
     document.documentElement.classList.add('legions-live');
     for (const b of buttons) b.addEventListener('click', () => show(b.dataset.pick!));
-    show(buttons[0]?.dataset.pick ?? '1');
+    show(legionForHash() ?? buttons[0]?.dataset.pick ?? '1');
+
+    // The browser scrolls before we unhide, so once the right Legion is up
+    // the target has to be brought into view again.
+    const settle = () => {
+      const n = legionForHash();
+      if (!n) return;
+      show(n);
+      document.getElementById(decodeURIComponent(location.hash.slice(1)))
+        ?.scrollIntoView({ block: 'start' });
+    };
+    addEventListener('hashchange', settle);
+    if (location.hash) requestAnimationFrame(settle);
   }
 </script>
