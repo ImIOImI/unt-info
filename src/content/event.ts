@@ -75,12 +75,6 @@ export const EVENT = {
      */
     opening: {
       lockMinutes: 3,
-      /**
-       * How many attackers each garrison player reinforces. Only one march
-       * can go to any one player, so this is a count of PEOPLE, not marches
-       * stacked on a single attacker.
-       */
-      reinforceAttackers: 2,
     },
 
     /** Minutes. The heal cooldown is what forces the attack/support swap. */
@@ -165,58 +159,21 @@ export const EVENT = {
     /**
      * ─── UNITY's plan ──────────────────────────────────────────────────
      *
-     * Everything from here down is how WE play the match, not how the game
-     * works. This is the part that is ours; the rest above is public fact.
+     * Deliberately empty. Everything above this line is how the GAME works
+     * and is true for every alliance on the map; everything that belongs
+     * below it is how WE play it — the squads, the opening, the mid-match
+     * loop, the endgame — and that is not written down yet.
+     *
+     * Nothing is copied in from another alliance's site as a placeholder,
+     * because a plausible-looking plan nobody agreed to is worse on this
+     * page than an honest gap. The page renders a "plan coming" panel where
+     * these sections go.
+     *
+     * When it lands, it comes back as data here and sections in
+     * src/components/page/Swordland.astro — src/components/Squads.astro and
+     * src/content/legions.ts are already waiting for the roster half.
      * ───────────────────────────────────────────────────────────────────
      */
-
-    /**
-     * The groups a Legion splits into, and how many go in each. Sizes are a
-     * shape, not a rule — a Legion short on heavy accounts runs a smaller
-     * attack group and a larger support one.
-     *
-     * Each key needs team.<key>.name / .duty / .note in the locales, and a
-     * matching squad key in src/content/legions.ts.
-     */
-    teams: [
-      { key: 'attack', size: 10 },
-      { key: 'jump', size: 10 },
-      { key: 'support', size: 10 },
-    ],
-
-    /**
-     * "Game on": the order things happen the moment the opening lock lifts.
-     * Each key has go.<key>.title / .body.
-     */
-    openingSequence: ['teleport', 'insurance', 'take', 'garrison', 'move'],
-
-    /** Backup rallies each jumper and garrison player starts at game on. */
-    backupRallies: 2,
-
-    /**
-     * Once the first captures are banked, the rest of the match is this loop,
-     * run over and over. Each key has cyc.<key>.title / .body.
-     */
-    targetCycle: ['wait', 'mark', 'jump', 'rally', 'grab'],
-
-    /** Length of the rally an attacker calls on a marked target, in minutes. */
-    targetRallyMinutes: 1,
-
-    /**
-     * The text an R4 puts on the bookmark. It is typed into the game in
-     * English and everyone looks for that exact word, so it lives here as a
-     * value rather than inside a sentence a translator would translate.
-     */
-    targetMark: 'target',
-
-    /** Minutes left on the clock when the Swordshrine push commits. */
-    shrinePushFromEnd: 10,
-
-    /**
-     * What we go for the moment the clock starts. Keys must match a
-     * target.<key> string in the locales.
-     */
-    openTargets: ['stables', 'sanctums'],
   },
 
 } as const;
