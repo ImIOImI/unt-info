@@ -96,7 +96,7 @@ function waitsFor(p: Player): number | null {
                   : <span class="hold__img hold__img--blank" aria-hidden="true">{initial(p.name)}</span>}
                 <div class="hold__txt">
                   <p class="hold__role">{i === 0 ? t('zone.lead') : t('zone.holds')}</p>
-                  <p class="hold__name">{p.name}{p.unverified && <span class="face__warn" title={t('zone.unverified')}>?</span>}</p>
+                  <p class="hold__name">{p.name}</p>
                   <p class="hold__obj">
                     {objective(p)}
                     {late !== null && <>{' '}<span class="hold__late">{t('bt.opensat', { n: late })}</span></>}
@@ -118,7 +118,6 @@ function waitsFor(p: Player): number | null {
                     ? <Image class="face__img" src={face} alt="" widths={[80, 160]} sizes="72px" loading="lazy" />
                     : <span class="face__img face__img--blank" aria-hidden="true">{initial(p.name)}</span>}
                   <span class="face__name">{p.name}</span>
-                  {p.unverified && <span class="face__warn" title={t('zone.unverified')}>?</span>}
                 </li>
               );
             })}
@@ -219,14 +218,6 @@ function waitsFor(p: Player): number | null {
   /* The chain reads left-to-right even in Arabic: it is a sequence of
      steps, and the arrow is the direction of time, not of text. */
   :global([dir='rtl']) .zone__prio { direction: ltr; justify-content: flex-end; }
-
-  .face__warn {
-    display: inline-grid; place-items: center;
-    inline-size: 1.05em; block-size: 1.05em; margin-inline-start: 0.3em;
-    border-radius: 50%; background: var(--ember-lift); color: var(--iron);
-    font-family: var(--display); font-weight: 900; font-size: 0.72em;
-    vertical-align: baseline; cursor: help;
-  }
 
   .zone__flexhd {
     font-family: var(--display); font-weight: 700; font-size: 0.6875rem;

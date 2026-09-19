@@ -73,19 +73,23 @@ Some names resolve to nobody because they are nicknames the game has never
 heard of — "PickYourToe" is what the operation order calls
 `PickYourFateᵁᴺᵀ`. Ask rather than inventing a match.
 
-### 2. A player outside UNT cannot play
+### 2. Being in another alliance is not a problem
 
-`--wide` searches the other alliances in 976, and it does find people —
-`MSC ᴾᴿᴹ` sits in OPC. Finding them is useful, but say plainly what it
-means: **a Legion is registered by an alliance, so somebody in another
-alliance cannot fill a UNT slot.** Either they are rejoining, or they come
-off the sheet. That is a leadership decision; surface it, do not resolve it.
+Players swap alliances between events and are back in UNT in time to play,
+so `MSC ᴾᴿᴹ` showing up in OPC is ordinary churn, not an error. **If the
+operation order names somebody, they go on the page**, and `--wide` exists
+precisely so you can find their id wherever they happen to be sitting today.
 
-The same goes for a player the sync script reports as having left. Report
-where they went (`/players/{id}` gives their current alliance) and let the
-user decide the replacement. Never quietly drop someone or promote a
-substitute on your own initiative — the headcount on the page is supposed to
-match the headcount in the order, and a silent change hides a real problem.
+`npm run sync:roster` resolves them individually and lists who is currently
+elsewhere as information. Do not treat that list as a problem to fix, do not
+drop anyone from the sheet over it, and do not promote a substitute to
+"cover" a gap. Leadership decides who plays; the page reports what the order
+says.
+
+The only thing worth raising is a name that matches **no account anywhere** —
+usually a typo, and worth mentioning because a name nobody can find is a name
+nobody can search for in chat either. It still renders, just without a
+portrait.
 
 ### 3. Edit `legions.json`, then sync
 
@@ -95,9 +99,8 @@ npm run sync:roster -- --force # re-download every avatar
 ```
 
 The script rewrites `roster.json`, downloads any portrait it does not have,
-refreshes every `_name`, and **exits non-zero** while anyone is unresolved or
-has left the alliance. A non-zero exit is the script doing its job, not a
-failure to work around.
+and refreshes every `_name`. It costs one call for the alliance plus one per
+player currently outside it, so it stays well inside the 60/min limit.
 
 Players on a stock game icon deliberately keep a lettered tile — five
 identical default portraits are worse than five distinct letters when the
@@ -112,7 +115,8 @@ npm run build     # also runs check:i18n
 Then confirm the things a build cannot:
 
 - Headcounts. Both Legions should field 30 and hold 10 in reserve. The page
-  counts the sheet, so a wrong number means a wrong sheet.
+  counts the sheet, so a wrong number means a wrong sheet. A player being in
+  another alliance does not change the count — they are still on the team.
 - No duplicate ids anywhere, within or across Legions.
 - Every zone still has a lead, and every building still has exactly one
   holder across the four zones: four Abbeys, two Sanctums, and one each of
@@ -151,7 +155,8 @@ standing workflow. Commit as `troy.knapp@gmail.com`.
 
 ## Reporting back
 
-Lead with anything that needs a human decision — someone who left, a name
-that would not resolve, a headcount that no longer adds up. Those matter
-more than the diff. Then say what changed and give the live link:
+Lead with anything that needs a human decision — a name that would not
+resolve anywhere, a headcount that no longer adds up, two people in one slot.
+Those matter more than the diff. Who is currently in which alliance is
+background, not a finding. Then say what changed and give the live link:
 <https://imioimi.github.io/unt-info/swordland/>

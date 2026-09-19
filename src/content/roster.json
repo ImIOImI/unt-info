@@ -1,386 +1,480 @@
 {
-  "fetchedAt": "2026-09-19T22:16:39.473Z",
+  "fetchedAt": "2026-09-19T22:20:25.779Z",
   "kingdom": 976,
   "tag": "UNT",
   "players": {
     "84045836": {
       "name": "BimBam",
       "rank": "R3",
+      "alliance": "UNT",
       "avatar": "84045836.png"
     },
     "84275144": {
       "name": "Ꭰøɴ Ꮇaz ᵁᴺᵀ",
       "rank": "R3",
+      "alliance": "UNT",
       "avatar": "84275144.png"
     },
     "84357288": {
       "name": "ox Saleh ox",
       "rank": "R3",
+      "alliance": "UNT",
       "avatar": null
     },
     "84469124": {
       "name": "Sandro",
       "rank": "R3",
+      "alliance": "UNT",
       "avatar": "84469124.png"
     },
     "84684863": {
       "name": "Khalid1318",
       "rank": "R3",
+      "alliance": "UNT",
       "avatar": "84684863.png"
     },
     "84701395": {
       "name": "F4F1BBLESᵁᴺᵀ",
       "rank": "R3",
+      "alliance": "UNT",
       "avatar": "84701395.png"
     },
     "84816196": {
       "name": "fady 88",
       "rank": "R3",
+      "alliance": "UNT",
       "avatar": null
     },
     "84832403": {
       "name": "『 DaYı 』",
       "rank": "R3",
+      "alliance": "UNT",
       "avatar": "84832403.png"
     },
     "85422469": {
       "name": "raV",
       "rank": "R3",
+      "alliance": "UNT",
       "avatar": "85422469.png"
     },
     "85635348": {
       "name": "Gonzo",
       "rank": "R3",
+      "alliance": "UNT",
       "avatar": "85635348.png"
     },
     "85766423": {
       "name": "༺༒ Maximus༒༻ᵁᴺᵀ",
       "rank": "R3",
+      "alliance": "UNT",
       "avatar": "85766423.png"
     },
     "85798868": {
       "name": "Ron Swanson",
       "rank": "R3",
+      "alliance": "UNT",
       "avatar": "85798868.png"
     },
     "86634826": {
       "name": "Falcs",
       "rank": "R3",
+      "alliance": "UNT",
       "avatar": "86634826.png"
     },
     "86913290": {
       "name": "Ꭰøɴ Ꭺboood ᴸᴬᴴ",
       "rank": "R3",
+      "alliance": "UNT",
       "avatar": "86913290.png"
     },
     "87371807": {
       "name": "Ꭰøɴ Ꭹass2M ᴸᴬᴴ",
       "rank": "R3",
+      "alliance": "UNT",
       "avatar": "87371807.png"
     },
     "87732523": {
       "name": "Otacon",
       "rank": "R3",
+      "alliance": "UNT",
       "avatar": "87732523.png"
     },
     "88076576": {
       "name": "NNBEAR7806",
       "rank": "R3",
+      "alliance": "UNT",
       "avatar": "88076576.png"
     },
     "94506744": {
       "name": "Txmeem",
       "rank": "R2",
+      "alliance": "UNT",
       "avatar": "94506744.png"
     },
     "95226545": {
       "name": "Freedom",
       "rank": "R3",
+      "alliance": "UNT",
       "avatar": "95226545.png"
     },
     "101065431": {
       "name": "midgemarine",
       "rank": "R3",
+      "alliance": "UNT",
       "avatar": "101065431.png"
     },
     "105743115": {
       "name": "JTLomo",
       "rank": "R3",
+      "alliance": "UNT",
       "avatar": "105743115.png"
     },
     "106365456": {
       "name": "domino",
       "rank": "R3",
+      "alliance": "UNT",
       "avatar": "106365456.png"
     },
     "106824795": {
       "name": "V4Vixxen ᵁᴺᵀ",
       "rank": "R3",
+      "alliance": "UNT",
       "avatar": "106824795.png"
     },
     "108102527": {
       "name": "FlowerEater",
       "rank": "R3",
+      "alliance": "UNT",
       "avatar": "108102527.png"
     },
     "108151439": {
       "name": "TroyIsMetal",
       "rank": "R3",
+      "alliance": "UNT",
       "avatar": "108151439.png"
     },
     "108282942": {
       "name": "Ally",
       "rank": "R3",
+      "alliance": "UNT",
       "avatar": "108282942.png"
     },
     "108413948": {
       "name": "LordDan91",
       "rank": "R3",
+      "alliance": "UNT",
       "avatar": null
     },
     "142711930": {
       "name": "Pink Panther",
       "rank": "R4",
+      "alliance": "UNT",
       "avatar": "142711930.png"
     },
     "142788417": {
       "name": "Don Ani",
       "rank": "R3",
+      "alliance": "UNT",
       "avatar": "142788417.png"
     },
     "142805035": {
       "name": "excite ᵁᴺᵀ",
       "rank": "R2",
+      "alliance": "UNT",
       "avatar": null
     },
     "142821093": {
       "name": "Uh Angry Gary",
       "rank": "R3",
+      "alliance": "UNT",
       "avatar": "142821093.png"
     },
     "142853894": {
       "name": "Gypseaᵁᴺᵀ",
       "rank": "R3",
+      "alliance": "UNT",
       "avatar": "142853894.png"
     },
     "142919775": {
       "name": "oweK ᵁᴺᵀ",
       "rank": "R3",
+      "alliance": "UNT",
       "avatar": "142919775.png"
     },
     "143066859": {
       "name": "Lord Yousef ᵁᴺᵀ",
       "rank": "R3",
+      "alliance": "UNT",
       "avatar": "143066859.png"
     },
     "143083500": {
       "name": "DG12",
       "rank": "R3",
+      "alliance": "UNT",
       "avatar": "143083500.png"
     },
     "143116208": {
       "name": "༺ᴵ ᵃᵐ Qᴜєєɴ༻ᵁᴺᵀ",
       "rank": "R4",
+      "alliance": "UNT",
       "avatar": "143116208.png"
     },
     "143132842": {
       "name": "Plarksᵁᴺᵀ",
       "rank": "R3",
+      "alliance": "UNT",
       "avatar": null
     },
     "143181758": {
       "name": "Don t ᵁᴺᵀerstand",
       "rank": "R2",
+      "alliance": "UNT",
       "avatar": null
     },
     "143187203": {
       "name": "Qᵁᴺᵀ",
       "rank": "R3",
+      "alliance": "UNT",
       "avatar": null
     },
     "143214444": {
       "name": "ursamayorᵁᴺᵀ",
       "rank": "R3",
+      "alliance": "UNT",
       "avatar": "143214444.png"
     },
     "143509630": {
       "name": "PersianManᵁᴺᵀ",
       "rank": "R2",
+      "alliance": "UNT",
       "avatar": "143509630.png"
     },
     "143603094": {
       "name": "Smowakᵁᴺᵀ",
       "rank": "R3",
+      "alliance": "UNT",
       "avatar": "143603094.png"
     },
     "143640241": {
       "name": "swirdulys ᵁᴺᵀ",
       "rank": "R3",
+      "alliance": "UNT",
       "avatar": null
     },
     "143722426": {
       "name": "Armel ᵁᴺᵀ",
       "rank": "R3",
+      "alliance": "UNT",
       "avatar": null
     },
     "143853743": {
       "name": "GG5009ᵁᴺᵀ",
       "rank": "R3",
+      "alliance": "UNT",
       "avatar": "143853743.png"
     },
     "144099478": {
       "name": "Bosa3d ᵁᴺᵀ",
       "rank": "R2",
+      "alliance": "UNT",
       "avatar": null
     },
     "144186089": {
       "name": "ThePint",
       "rank": "R3",
+      "alliance": "UNT",
       "avatar": "144186089.png"
     },
     "144214218": {
       "name": "AndreBorges ᵁᴺᵀ",
       "rank": "R4",
+      "alliance": "UNT",
       "avatar": "144214218.png"
     },
     "144296176": {
       "name": "Matt ᴾᴿᴹ",
       "rank": "R3",
+      "alliance": "UNT",
       "avatar": "144296176.png"
     },
     "144476293": {
       "name": "Sartorius",
       "rank": "R3",
+      "alliance": "UNT",
       "avatar": "144476293.png"
     },
     "144623492": {
       "name": "ClaudioBuBuᵁᴺᵀ",
       "rank": "R2",
+      "alliance": "UNT",
       "avatar": "144623492.png"
     },
     "144721429": {
       "name": "Demo",
       "rank": "R4",
+      "alliance": "UNT",
       "avatar": "144721429.png"
     },
     "144787577": {
       "name": "LordEBee",
       "rank": "R3",
+      "alliance": "UNT",
       "avatar": "144787577.png"
     },
     "144885995": {
       "name": "Loricifero",
       "rank": "R3",
+      "alliance": "UNT",
       "avatar": "144885995.png"
     },
     "144951541": {
       "name": "Bloup",
       "rank": "R3",
+      "alliance": "UNT",
       "avatar": "144951541.png"
+    },
+    "145049170": {
+      "name": "MSC ᴾᴿᴹ",
+      "rank": "R3",
+      "alliance": "OPC",
+      "avatar": null
     },
     "145114999": {
       "name": "qkhnyksl ᵁᴺᵀ",
       "rank": "R3",
+      "alliance": "UNT",
       "avatar": "145114999.png"
     },
     "145213178": {
       "name": "Danthalusᵁᴺᵀ",
       "rank": "R4",
+      "alliance": "UNT",
       "avatar": "145213178.png"
+    },
+    "145278963": {
+      "name": "PickYourFateᵁᴺᵀ",
+      "rank": "R4",
+      "alliance": "NBR",
+      "avatar": "145278963.png"
     },
     "145458940": {
       "name": "AkkiLa420BuBuᵁᴺᵀ",
       "rank": "R4",
+      "alliance": "UNT",
       "avatar": "145458940.png"
     },
     "145524664": {
       "name": "Freya ᴮᴬᴹ",
       "rank": "R4",
+      "alliance": "UNT",
       "avatar": "145524664.png"
     },
     "145540797": {
       "name": "SharKauᵁᴺᵀ",
       "rank": "R2",
+      "alliance": "UNT",
       "avatar": "145540797.png"
     },
     "145541031": {
       "name": "Boshtoiseᵁᴺᵀ",
       "rank": "Leader",
+      "alliance": "UNT",
       "avatar": "145541031.png"
     },
     "145541218": {
       "name": "Zeus×͜×",
       "rank": "R3",
+      "alliance": "UNT",
       "avatar": "145541218.png"
     },
     "145721485": {
       "name": "Seafarersaur ᵁᴺᵀ",
       "rank": "R3",
+      "alliance": "UNT",
       "avatar": "145721485.png"
     },
     "145770340": {
       "name": "BSGameToPlayᴾᴿᴹ",
       "rank": "R2",
+      "alliance": "UNT",
       "avatar": null
     },
     "145819476": {
       "name": "David",
       "rank": "R3",
+      "alliance": "UNT",
       "avatar": "145819476.png"
     },
     "145819747": {
       "name": "Sniper ᵁᴺᵀ",
       "rank": "R3",
+      "alliance": "UNT",
       "avatar": "145819747.png"
     },
     "145966989": {
       "name": "SmackBuBuᵁᴺᵀ",
       "rank": "R4",
+      "alliance": "UNT",
       "avatar": "145966989.png"
     },
     "145967039": {
       "name": "Henners",
       "rank": "R3",
+      "alliance": "UNT",
       "avatar": "145967039.png"
     },
     "146065176": {
       "name": "MSO ᵁᴺᵀ",
       "rank": "R3",
+      "alliance": "UNT",
       "avatar": null
     },
     "146098215": {
       "name": "Soumyaᵁᴺᵀ",
       "rank": "R3",
+      "alliance": "UNT",
       "avatar": "146098215.png"
     },
     "146327476": {
       "name": "Zamochᵁᴺᵀ",
       "rank": "R4",
+      "alliance": "UNT",
       "avatar": "146327476.png"
     },
     "146622288": {
       "name": "Drake Taᵁᴺᵀ",
       "rank": "R4",
+      "alliance": "UNT",
       "avatar": "146622288.png"
+    },
+    "146753386": {
+      "name": "Supportᵁᴺᵀ",
+      "rank": "R4",
+      "alliance": "NBR",
+      "avatar": "146753386.png"
     },
     "146786268": {
       "name": "046 ᵁᴺᵀ",
       "rank": "R3",
+      "alliance": "UNT",
       "avatar": "146786268.png"
     },
     "162032076": {
       "name": "Medlachienteᵁᴺᵀ",
       "rank": "R3",
+      "alliance": "UNT",
       "avatar": "162032076.png"
     },
     "170266380": {
       "name": "Duvyverse ᵁᴺᵀ",
       "rank": "R4",
+      "alliance": "UNT",
       "avatar": "170266380.png"
     },
     "175335019": {
       "name": "marimo zoro",
       "rank": "R2",
+      "alliance": "UNT",
       "avatar": "175335019.png"
     }
   }

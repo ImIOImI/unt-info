@@ -143,7 +143,6 @@
   "legion.pick": "Legion {n}",
   "legion.choose": "Choose a Legion",
   "zone.priority": "Priority",
-  "zone.unverified": "No matching account found in game — check this name.",
   "sl.zones.synced": "Names, ranks and faces pulled from MightPulse on {date}.",
   "order.communicate.title": "Say what you can see",
   "order.communicate.body": "Enemy movements, incoming attacks, an empty garrison, a building about to flip — call it. A zone lead can only direct what somebody tells them about, and the thing you assume everyone noticed is usually the thing nobody did.",

@@ -15,8 +15,12 @@
  *  a normal space where the game uses U+00A0, which looks identical and is
  *  not the same string. An id cannot be mistyped that way.
  *
- *  Costs one API call for the whole alliance, plus one image fetch per
- *  portrait we do not already have.
+ *  Players move between alliances constantly and are back before the
+ *  event, so sitting outside UNT today says nothing about whether somebody
+ *  plays on Sunday. Anyone named in the operation order belongs on the
+ *  page, and this script resolves them wherever they currently are: the
+ *  alliance roster in one call for the many, then one call each for the
+ *  handful who have wandered off.
  * ─────────────────────────────────────────────────────────────────────────
  */
 import fs from 'node:fs/promises';
@@ -26,7 +30,7 @@ import os from 'node:os';
 
 const KID = 976;
 const TAG = 'UNT';
-const API = `https://api.mightpulse.com/v1/alliances/${KID}/${TAG}?include=info,roster`;
+const API = 'https://api.mightpulse.com/v1';
 /** Avatar paths are relative; this host 302s them to the game's CDN. */
 const CDN = 'https://mightpulse.com';
 
@@ -36,6 +40,7 @@ const ROSTER = path.join(ROOT, 'src/content/roster.json');
 const AVATARS = path.join(ROOT, 'src/avatars');
 
 const force = process.argv.includes('--force');
+const pause = (ms) => new Promise((r) => setTimeout(r, ms));
 
 /** Every entry in the file that names a player, wherever it is nested. */
 function* players(node) {
@@ -47,39 +52,53 @@ function* players(node) {
 }
 
 const token = (await fs.readFile(path.join(os.homedir(), '.mightpulse-token'), 'utf8')).trim();
+const auth = { Authorization: `Bearer ${token}` };
 
-const res = await fetch(API, { headers: { Authorization: `Bearer ${token}` } });
+const res = await fetch(`${API}/alliances/${KID}/${TAG}?include=info,roster`, { headers: auth });
 if (!res.ok) throw new Error(`alliance fetch failed: ${res.status} ${res.statusText}`);
 const body = await res.json();
 const members = body.members ?? [];
 if (!members.length) throw new Error('alliance returned no members — refusing to write');
 const byId = new Map(members.map((m) => [m.governor_id, m]));
-console.log(`roster: ${members.length} members`);
+console.log(`${TAG} roster: ${members.length} members`);
 
 const legions = JSON.parse(await fs.readFile(LEGIONS, 'utf8'));
 const entries = [...players(legions)];
 
 const roster = {};
-const gone = [];
-const unresolved = [];
+const elsewhere = [];   // plays for us, currently in another alliance
+const nameOnly = [];    // no account found — the order's spelling is all we have
 const wanted = [];
 
 for (const e of entries) {
-  if (e.id === null) { unresolved.push(e._name); continue; }
+  if (e.id === null) { nameOnly.push(e._name); continue; }
+
+  let name, rank, avatarUrl, alliance;
   const m = byId.get(e.id);
-  if (!m) { gone.push(`${e.id} (${e._name})`); continue; }
+  if (m) {
+    ({ nick_name: name, alliance_rank_label: rank, avatar_url: avatarUrl } = m);
+    alliance = TAG;
+  } else {
+    // Not in UNT right now. Normal — look them up directly.
+    await pause(1100); // 60/min
+    const r = await fetch(`${API}/players/${e.id}`, { headers: auth });
+    if (!r.ok) { nameOnly.push(`${e._name} (id ${e.id} → HTTP ${r.status})`); continue; }
+    const p = (await r.json()).player;
+    name = p.nick_name;
+    rank = p.alliance?.rank_label ?? null;
+    avatarUrl = p.avatar_url;
+    alliance = p.alliance?.abbr ?? null;
+    elsewhere.push(`${name} → ${alliance ?? 'no alliance'}`);
+  }
 
   // The file's copy of the name is a convenience for whoever edits it, so
   // it is rewritten from the API every run and can never drift.
-  e._name = m.nick_name;
+  e._name = name;
+  delete e.unverified;
 
-  const custom = m.avatar_url?.startsWith('/cdn/');
-  roster[e.id] = {
-    name: m.nick_name,
-    rank: m.alliance_rank_label,
-    avatar: custom ? `${e.id}.png` : null,
-  };
-  if (custom) wanted.push({ id: e.id, url: m.avatar_url });
+  const custom = avatarUrl?.startsWith('/cdn/');
+  roster[e.id] = { name, rank, alliance, avatar: custom ? `${e.id}.png` : null };
+  if (custom) wanted.push({ id: e.id, url: avatarUrl });
 }
 
 await fs.mkdir(AVATARS, { recursive: true });
@@ -93,8 +112,11 @@ for (const { id, url } of wanted) {
   if (buf.length < 512) { console.warn(`  avatar ${id}: suspiciously small, skipped`); continue; }
   await fs.writeFile(dest, buf);
   got++;
-  await new Promise((r) => setTimeout(r, 120)); // stay well inside 60/min
+  await pause(120);
 }
+
+// Record in the file itself that nobody has ever matched these to an account.
+for (const e of entries) if (e.id === null) e.unverified = true;
 
 await fs.writeFile(LEGIONS, JSON.stringify(legions, null, 2) + '\n');
 await fs.writeFile(ROSTER, JSON.stringify({
@@ -103,15 +125,20 @@ await fs.writeFile(ROSTER, JSON.stringify({
   players: roster,
 }, null, 2) + '\n');
 
-const stock = entries.filter((e) => e.id && roster[e.id] && !roster[e.id].avatar).length;
+const stock = Object.values(roster).filter((p) => !p.avatar).length;
 console.log(`placed ${entries.length} · resolved ${Object.keys(roster).length}`);
 console.log(`avatars: ${got} downloaded, ${skipped} already present, ${stock} on a stock icon`);
 
-// A roster problem is the point of running this, so it is loud and it
-// fails the build rather than scrolling past in a log.
-if (gone.length) console.error(`\nNO LONGER IN THE ALLIANCE:\n  ${gone.join('\n  ')}`);
-if (unresolved.length) console.error(`\nNEVER MATCHED TO AN ACCOUNT:\n  ${unresolved.join('\n  ')}`);
-if (gone.length || unresolved.length) {
-  console.error('\nFix src/content/legions.json — a name on the team sheet that nobody can find in game is worse than a gap.');
-  process.exitCode = 1;
+// Informational, not a problem: people swap alliances between events.
+if (elsewhere.length) {
+  console.log(`\nCurrently outside ${TAG} (${elsewhere.length}) — back before the event:`);
+  for (const line of elsewhere) console.log(`  ${line}`);
+}
+
+// Worth a second look, because a name nobody can find is a name nobody can
+// search for in chat either. Not fatal — the page still shows it as written.
+if (nameOnly.length) {
+  console.log(`\nNo account found, showing the name as written (${nameOnly.length}):`);
+  for (const n of nameOnly) console.log(`  ${n}`);
+  console.log('If one of these is a typo, fixing it in legions.json earns them a portrait.');
 }

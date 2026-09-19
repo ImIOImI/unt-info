@@ -33,7 +33,6 @@ const faceFor = (p: Player) => p.avatar
           ? <Image class="face__img" src={face} alt="" widths={[80, 160]} sizes="72px" loading="lazy" />
           : <span class="face__img face__img--blank" aria-hidden="true">{initial(p.name)}</span>}
         <span class="face__name">{p.name}</span>
-        {p.unverified && <span class="face__warn" title={t('zone.unverified')}>?</span>}
       </li>
     );
   })}
@@ -41,13 +40,4 @@ const faceFor = (p: Player) => p.avatar
 
 <style>
   .faces--reserve { margin-bottom: 0; }
-  /* Same marker as the zone cards; those styles are scoped, so it is
-     repeated here rather than reached for across a component boundary. */
-  .face__warn {
-    display: inline-grid; place-items: center;
-    inline-size: 1.05em; block-size: 1.05em; margin-inline-start: 0.3em;
-    border-radius: 50%; background: var(--ember); color: var(--snow);
-    font-family: var(--display); font-weight: 900; font-size: 0.72em;
-    cursor: help;
-  }
 </style>

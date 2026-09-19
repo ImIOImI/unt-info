@@ -68,10 +68,10 @@ string underneath. Players also rename themselves — the Yellow lead of Legion
 1 is written "PickYourToe" in the operation order and `PickYourFateᵁᴺᵀ` in
 game. An id survives both.
 
-The script exits non-zero and names anyone it could not resolve, either
-because they left the alliance or because no account matches. They still
-render, marked with an orange `?`, because quietly dropping someone would
-contradict the order's own headcount.
+Players swap alliances between events and are back in time to play, so the
+script resolves anyone currently outside UNT individually and simply lists
+them. That is information, not a problem. A name matching no account at all
+still renders as written — it just has no portrait, and is probably a typo.
 
 Headcounts are never written down. The page counts the team sheet, so moving
 someone updates every number that mentions them. The zone priority chain is

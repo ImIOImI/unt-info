@@ -143,7 +143,6 @@
   "legion.pick": "Légion {n}",
   "legion.choose": "Choisir une Légion",
   "zone.priority": "Priorité",
-  "zone.unverified": "Aucun compte correspondant trouvé en jeu — vérifie ce nom.",
   "sl.zones.synced": "Noms, rangs et portraits récupérés depuis MightPulse le {date}.",
   "order.communicate.title": "Dis ce que tu vois",
   "order.communicate.body": "Mouvements ennemis, attaques en approche, une garnison vide, un bâtiment sur le point de basculer — annonce-le. Un chef de zone ne peut diriger que ce qu’on lui rapporte, et ce que tu crois que tout le monde a vu, personne ne l’a signalé.",
