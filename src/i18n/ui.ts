@@ -1,11 +1,11 @@
 // Language set and native names are copied from kingshot-rally-web/src/i18n
 // so a player sees the same switcher on both sites.
-export const SUPPORTED = ['en', 'de', 'tr', 'fr', 'pl', 'zh', 'ar', 'ja', 'es'] as const;
+export const SUPPORTED = ['en', 'de', 'tr', 'fr', 'pl', 'zh', 'ar', 'ja', 'es', 'pt'] as const;
 export type Lang = (typeof SUPPORTED)[number];
 
 export const NAMES: Record<Lang, string> = {
   en: 'English', de: 'Deutsch', tr: 'Türkçe', fr: 'Français', pl: 'Polski',
-  zh: '中文', ar: 'العربية', ja: '日本語', es: 'Español',
+  zh: '中文', ar: 'العربية', ja: '日本語', es: 'Español', pt: 'Português',
 };
 
 export const RTL_LANGS = new Set<Lang>(['ar']);
@@ -27,8 +27,9 @@ import zh from './locales/zh.json';
 import ar from './locales/ar.json';
 import ja from './locales/ja.json';
 import es from './locales/es.json';
+import pt from './locales/pt.json';
 
-const DICTS: Record<Lang, Record<string, string>> = { en, de, tr, fr, pl, zh, ar, ja, es };
+const DICTS: Record<Lang, Record<string, string>> = { en, de, tr, fr, pl, zh, ar, ja, es, pt };
 
 /** Returns the current language from a URL like /es/super-bear. */
 export function langFromUrl(url: URL): Lang {

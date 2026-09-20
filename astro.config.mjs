@@ -10,7 +10,7 @@ export default defineConfig({
   base: '/unt-info',
   i18n: {
     defaultLocale: 'en',
-    locales: ['en', 'de', 'tr', 'fr', 'pl', 'zh', 'ar', 'ja', 'es'],
+    locales: ['en', 'de', 'tr', 'fr', 'pl', 'zh', 'ar', 'ja', 'es', 'pt'],
     routing: { prefixDefaultLocale: false },
   },
 });

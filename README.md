@@ -86,10 +86,11 @@ reads as a broken image.
 
 ## Languages
 
-`en, de, tr, fr, pl, zh, ar, ja, es` — the same set as
+`en, de, tr, fr, pl, zh, ar, ja, es, pt` — the first nine match
 [kingshot-rally-timer](https://github.com/ImIOImI/kingshot-rally-timer), so a
-player sees a familiar switcher across all our sites. Arabic renders
-right-to-left.
+player sees a familiar switcher across our sites. Portuguese is ours alone so
+far; adding it to rally-web would bring the two switchers back into line.
+Arabic renders right-to-left.
 
 Missing keys fall back to English one by one, so a partial language still
 renders a complete page.
