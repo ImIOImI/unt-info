@@ -137,7 +137,7 @@
   "zone.yellow.motto": "South strong. Stables ours.",
   "sl.map.title": "The battlefield",
   "sl.map.lede": "Four zones around a shared centre. {shrine} sits in the middle and belongs to nobody — everything else is inside somebody’s colour.",
-  "sl.map.cap": "Zone boundaries and building positions, from the Legion 1 operation order. Labels are in English on the map itself; every building is named in your language elsewhere on this page.",
+  "sl.map.cap": "Zone boundaries and building positions. Labels are in English on the map itself; every building is named in your language elsewhere on this page.",
   "sl.map.alt": "Map of the Swordland arena, divided into four coloured zones around a central Swordshrine.",
   "sl.map.cellars": "The {n} Undercellars spawn in {zones} only. The other two zones have none of their own — if you are Flex there and the call goes out to gather, ask your zone lead before you leave your colour.",
   "legion.pick": "Legion {n}",

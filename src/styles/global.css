@@ -792,9 +792,16 @@ img { max-width: 100%; height: auto; display: block; }
 
 /* The battlefield map. Capped at its natural width so it is never blown up
    past the resolution it was cropped at, and centred rather than stretched. */
-.map { margin: 0 0 1.5rem; max-width: 27.625rem; }
+/* The map is landscape and dense with labels, so it gets more room than a
+   figure normally would. Below about 34rem the building names stop being
+   readable at all, so on a phone it scrolls sideways inside its own box
+   rather than shrinking into mush — the same bargain the payout table
+   makes, and the page already teaches that gesture there. */
+.map { margin: 0 0 1.5rem; max-width: 42rem; }
+.map__scroll { overflow-x: auto; }
 .map img {
   width: 100%; height: auto;
+  min-width: 34rem;
   border: 1px solid var(--hair);
 }
 .map__cap {

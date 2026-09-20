@@ -137,7 +137,7 @@
   "zone.yellow.motto": "Le sud tient. Les écuries sont à nous.",
   "sl.map.title": "Le champ de bataille",
   "sl.map.lede": "Quatre zones autour d’un centre commun. {shrine} est au milieu et n’appartient à personne — tout le reste est dans la couleur de quelqu’un.",
-  "sl.map.cap": "Limites des zones et emplacements des bâtiments, d’après l’ordre d’opération de la Légion 1. Les libellés sur la carte sont en anglais ; chaque bâtiment est nommé dans ta langue ailleurs sur cette page.",
+  "sl.map.cap": "Limites des zones et emplacements des bâtiments. Les libellés sur la carte sont en anglais ; chaque bâtiment est nommé dans ta langue ailleurs sur cette page.",
   "sl.map.alt": "Carte de l’arène de Swordland, divisée en quatre zones colorées autour d’un Sanctuaire de l’Épée central.",
   "sl.map.cellars": "Les {n} Sous-caves n’apparaissent que dans {zones}. Les deux autres zones n’en ont aucune — si tu y es Flex et qu’on appelle à récolter, demande à ton chef de zone avant de quitter ta couleur.",
   "legion.pick": "Légion {n}",

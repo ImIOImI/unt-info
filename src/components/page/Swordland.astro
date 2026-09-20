@@ -130,8 +130,10 @@ const sharedNames = new Intl.ListFormat(lang, { type: 'conjunction' })
     <Heading id="map" class="h-section">{t('sl.map.title')}</Heading>
     <p class="lede">{t('sl.map.lede', { shrine: sharedNames })}</p>
     <figure class="map">
-      <Image src={battlefield} alt={t('sl.map.alt')} widths={[442, 884]}
-             sizes="(min-width: 52rem) 442px, 100vw" loading="lazy" />
+      <div class="map__scroll">
+        <Image src={battlefield} alt={t('sl.map.alt')} widths={[658, 1316]}
+               sizes="(min-width: 46rem) 42rem, 34rem" loading="lazy" />
+      </div>
       <figcaption class="map__cap">{t('sl.map.cap')}</figcaption>
     </figure>
     <p class="waves__warn">{t('sl.map.cellars', { n: cellarTotal, zones: cellarZones })}</p>
